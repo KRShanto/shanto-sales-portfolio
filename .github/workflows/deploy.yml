@@ -1,0 +1,32 @@
+name: Deploy the application
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Create .env file
+        run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env && echo "SITE_URL=${{ secrets.SITE_URL }}" >> .env
+      - name: Build docker image
+        run: docker build -t krshanto/sales-portfolio .
+      - name: Login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Push docker image
+        run: docker push krshanto/sales-portfolio:latest
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull krshanto/sales-portfolio:latest
+      - name: Delete existing container
+        run: docker rm -f sales-portfolio
+      - name: Run the container
+        run: docker run -d -p 3000:3000 --name sales-portfolio krshanto/sales-portfolio
