@@ -26,11 +26,13 @@ export default function Nabar() {
           Why
         </Link>
         <Link href="#learn" className="nav-link hover:text-gray-100">
-          {" "}
           Learn
         </Link>
         <Link href="#portfolio" className="nav-link hover:text-gray-100">
           Portfolio
+        </Link>
+        <Link href="#pricing" className="nav-link hover:text-gray-100">
+          Pricing
         </Link>
         <Link href="#contact" className="nav-link hover:text-gray-100">
           Contact

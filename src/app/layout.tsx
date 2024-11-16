@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { HeroHighlight } from "@/components/ui/bg-highlight";
@@ -27,7 +26,7 @@ export default function RootLayout({
           >
             <div className="mx-auto w-[80vw]">
               <Navbar />
-              {children}
+              <main>{children}</main>
             </div>
           </ThemeProvider>
         </HeroHighlight>
