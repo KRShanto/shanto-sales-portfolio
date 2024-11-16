@@ -93,3 +93,23 @@
   width: 100%;
   right: 0;
 }
+
+.hero-gradient {
+  background: #ff0492;
+  background: linear-gradient(to right, #ff0492 0%, #740aff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.name-gradient {
+  font-size: 100px;
+  color: black;
+  background: linear-gradient(-5deg, #eea94f, #fd014d, #2394d5, #2a5cf3);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  /* -webkit-text-fill-color: transparent; */
+  -webkit-text-stroke: 5px transparent;
+  user-select: none;
+}
