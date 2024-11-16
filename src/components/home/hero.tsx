@@ -2,7 +2,7 @@
 
 import { Roboto_Slab, Kanit } from "next/font/google";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
-import Myself from "../../../public/Shanto1.png";
+import Myself from "../../../public/myself/Shanto1.png";
 import Image from "next/image";
 import { TextHoverEffect } from "../ui/text-hover-effect";
 import { BackgroundLines } from "../ui/background-lines";
