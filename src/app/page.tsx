@@ -3,7 +3,7 @@
 export default function Page() {
   return (
     <div>
-      <h1>Fuck you</h1>
+      <h1>I love you Owamita</h1>
     </div>
   );
 }

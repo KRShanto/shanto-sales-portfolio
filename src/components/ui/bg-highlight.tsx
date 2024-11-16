@@ -36,18 +36,19 @@ export const HeroHighlight = ({
     >
       <div className="pointer-events-none absolute inset-0 bg-dot-thick-neutral-300 dark:bg-dot-thick-neutral-800" />
       <motion.div
-        className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 bg-dot-thick-indigo-500 group-hover:opacity-100 dark:bg-dot-thick-indigo-500"
+        // TODO: skipped for now.
+        // className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 bg-dot-thick-blue-500 group-hover:opacity-100 dark:bg-dot-thick-blue-500"
         style={{
           WebkitMaskImage: useMotionTemplate`
             radial-gradient(
-              200px circle at ${mouseX}px ${mouseY}px,
+              80px circle at ${mouseX}px ${mouseY}px,
               black 0%,
               transparent 100%
             )
           `,
           maskImage: useMotionTemplate`
             radial-gradient(
-              200px circle at ${mouseX}px ${mouseY}px,
+              80px circle at ${mouseX}px ${mouseY}px,
               black 0%,
               transparent 100%
             )

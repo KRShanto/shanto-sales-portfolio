@@ -15,5 +15,4 @@
 - features text: text-generate-effect
 - my name: text-hover-effect, sparkles
 - whole body: tracing-beam
-
-I need "hero hightligh" > background || for the background
+- background: hero hightligh
