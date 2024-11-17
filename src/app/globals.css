@@ -127,3 +127,15 @@ html {
   margin: 2rem 0;
   text-align: center;
 }
+
+/* for the newsletter modal */
+.no-visible-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* for the newsletter modal */
+.no-visible-scrollbar::-webkit-scrollbar {
+  display: none;
+}

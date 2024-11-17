@@ -4,6 +4,7 @@ import Blog from "@/components/home/blog";
 import Portfolio from "@/components/home/portfolio";
 import Friends from "@/components/home/friends";
 import Pricing from "@/components/home/pricing";
+import NewsletterModal from "@/components/home/newsletter-modal";
 
 export default function Page() {
   return (
@@ -13,6 +14,7 @@ export default function Page() {
       <Portfolio />
       <Blog />
       <Friends />
+      <NewsletterModal />
       <Pricing />
     </>
   );
