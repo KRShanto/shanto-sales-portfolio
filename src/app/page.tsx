@@ -3,6 +3,7 @@ import Hero from "../components/home/hero";
 import Blog from "@/components/home/blog";
 import Portfolio from "@/components/home/portfolio";
 import Friends from "@/components/home/friends";
+import Pricing from "@/components/home/pricing";
 
 export default function Page() {
   return (
@@ -12,6 +13,7 @@ export default function Page() {
       <Portfolio />
       <Blog />
       <Friends />
+      <Pricing />
     </>
   );
 }

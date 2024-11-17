@@ -5,13 +5,19 @@ export default function Section({
   children,
   className,
   id,
+  ref,
 }: {
   children: React.ReactNode;
   className?: string;
   id?: string;
+  ref?: any;
 }) {
   return (
-    <section id={id} className={cn("mx-auto mt-32 w-[80vw]", className)}>
+    <section
+      id={id}
+      className={cn("mx-auto mt-32 w-[80vw]", className)}
+      ref={ref}
+    >
       {children}
     </section>
   );
