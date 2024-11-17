@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "firebasestorage.googleapis.com",
       },
+      {
+        hostname: "krshanto.vercel.app",
+      },
     ],
   },
 };

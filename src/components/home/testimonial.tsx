@@ -13,6 +13,7 @@ import ShortFlows from "../../../public/companies/shortflows.png";
 import StarElevator from "../../../public/companies/starelevator.png";
 import FSM from "../../../public/companies/fsm.png";
 import Fiverr from "../../../public/companies/fiverr.png";
+import Section from "../section";
 
 const testimonials = [
   {
@@ -91,7 +92,7 @@ const companies = [
 
 export default function Testimonial() {
   return (
-    <div className="mt-36 flex items-center">
+    <Section className="flex items-center">
       <AnimatedTestimonials
         testimonials={testimonials.map((testimonial) => ({
           quote: testimonial.description,
@@ -103,6 +104,6 @@ export default function Testimonial() {
       />
 
       <InfiniteMovingCards items={companies} direction="right" speed="fast" />
-    </div>
+    </Section>
   );
 }
