@@ -11,7 +11,7 @@ export default function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={cn("mt-32", className)}>
+    <section id={id} className={cn("mx-auto mt-32 w-[80vw]", className)}>
       {children}
     </section>
   );

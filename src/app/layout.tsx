@@ -24,7 +24,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="mx-auto w-[80vw]">
+            <div className="">
               <Navbar />
               <main>{children}</main>
             </div>

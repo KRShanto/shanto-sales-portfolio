@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "krshanto.vercel.app",
       },
+      {
+        hostname: "media.licdn.com",
+      },
     ],
   },
 };

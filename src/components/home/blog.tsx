@@ -1,11 +1,12 @@
 import React from "react";
 import { HeroParallax } from "../ui/hero-parallax";
+import Section from "../section";
 
 export default function Blog() {
   return (
-    <div className="mt-32">
+    <Section className="w-full" id="learn">
       <HeroParallax products={products} />
-    </div>
+    </Section>
   );
 }
 

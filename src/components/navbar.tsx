@@ -7,7 +7,7 @@ import Logo from "../../public/icon.png";
 
 export default function Nabar() {
   return (
-    <nav className="flex items-center justify-between py-5">
+    <nav className="mx-auto flex w-[80vw] items-center justify-between py-5">
       {/* Logo */}
       <Image
         src={Logo}

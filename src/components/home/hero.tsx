@@ -6,6 +6,7 @@ import Myself from "../../../public/myself/Shanto1.png";
 import Image from "next/image";
 import { TextHoverEffect } from "../ui/text-hover-effect";
 import { BackgroundLines } from "../ui/background-lines";
+import Section from "../section";
 
 const roboto = Roboto_Slab({
   weight: "600",
@@ -18,7 +19,7 @@ const kanit = Kanit({
 
 export default function Hero() {
   return (
-    <div className="mt-14 flex gap-5">
+    <Section className="mt-14 flex gap-5">
       <div className="relative w-1/2">
         <h1 className="text-8xl leading-[7rem]" style={roboto.style}>
           A <span className="hero-gradient relative">Landing</span> page helps
@@ -60,6 +61,6 @@ export default function Hero() {
           them are happy with my service.
         </p>
       </div>
-    </div>
+    </Section>
   );
 }
