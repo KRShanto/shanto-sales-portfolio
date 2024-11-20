@@ -135,8 +135,20 @@ function ModalTrigger() {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setOpen(true);
-          // Optionally, disconnect observer after opening the modal once
+          // Check in the local storage when the modal was last opened
+          const lastOpened = localStorage.getItem("modal-last-opened");
+          // If the modal was never opened or last opened more than 1 day ago
+          if (
+            !lastOpened ||
+            Date.now() - Number(lastOpened) > 1000 * 60 * 60 * 24
+          ) {
+            // Set the current time in the local storage
+            localStorage.setItem("modal-last-opened", String(Date.now()));
+            // Open the modal
+            setOpen(true);
+          }
+
+          // disconnect observer after opening the modal once
           if (observer) observer.disconnect();
         }
       });
