@@ -11,10 +11,18 @@ import SectionTitle from "../section-title";
 import { BackgroundGradient } from "../ui/background-gradient";
 import DiscountImage from "../../../public/discount.png";
 import Image from "next/image";
+import { PricingModel } from "@/types/pricing";
+import { useSelectPricing } from "@/hooks/useSelectPricing";
+import { Roboto } from "next/font/google";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: "700",
+});
 
 const pricingPlans = [
   {
-    name: "Basic Landing Page",
+    name: PricingModel.Basic,
     originalPrice: 999,
     price: 499,
     features: [
@@ -30,7 +38,7 @@ const pricingPlans = [
     addOns: [{ name: "AI Content Generation", price: 299 }],
   },
   {
-    name: "Blogging Site",
+    name: PricingModel.Premium,
     originalPrice: 2499,
     price: 1249,
     features: [
@@ -52,7 +60,7 @@ const pricingPlans = [
     ],
   },
   {
-    name: "Custom Website",
+    name: PricingModel.Custom,
     priceRange: "Custom",
     features: [
       "Custom multi-page responsive design",
@@ -83,6 +91,7 @@ export default function Pricing() {
   const [appliedDiscount, setAppliedDiscount] = useState(0);
   const [discountError, setDiscountError] = useState("");
   const [showDiscountInput, setShowDiscountInput] = useState(false);
+  const { pricingModel, setPricingModel } = useSelectPricing();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -142,6 +151,17 @@ export default function Pricing() {
       setDiscountError("Invalid discount code. Please try again.");
     }
   };
+
+  async function handleOnClick(model: PricingModel) {
+    // scroll to "#contact" section
+    window.scrollTo({
+      top: document.getElementById("contact")?.offsetTop,
+      behavior: "smooth",
+    });
+    setPricingModel(model);
+  }
+
+  console.log("Selected pricing model: ", pricingModel);
 
   return (
     <Section id="pricing" ref={sectionRef} className="relative">
@@ -212,7 +232,13 @@ export default function Pricing() {
                   ))}
                 </div>
               )}
-              <Button className="mt-8">Get started</Button>
+              <Button
+                className="mt-8 text-xl transition-transform duration-300 ease-in-out active:scale-95"
+                style={roboto.style}
+                onClick={() => handleOnClick(plan.name)}
+              >
+                Get started
+              </Button>
             </BackgroundGradient>
           ))}
         </div>
