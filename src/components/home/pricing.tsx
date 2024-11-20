@@ -88,10 +88,11 @@ export default function Pricing() {
     [key: string]: { [key: string]: boolean };
   }>({});
   const [couponCode, setCouponCode] = useState("");
-  const [appliedDiscount, setAppliedDiscount] = useState(0);
+  // const [appliedDiscount, setAppliedDiscount] = useState(0);
   const [discountError, setDiscountError] = useState("");
   const [showDiscountInput, setShowDiscountInput] = useState(false);
-  const { pricingModel, setPricingModel } = useSelectPricing();
+  const { pricingModel, discount, setPricingModel, setDiscount } =
+    useSelectPricing();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -138,16 +139,19 @@ export default function Pricing() {
 
     const totalBeforeDiscount = basePrice + addOnTotal;
     const discountedPrice =
-      totalBeforeDiscount - totalBeforeDiscount * appliedDiscount;
+      totalBeforeDiscount - totalBeforeDiscount * discount;
     return discountedPrice.toFixed(2);
   };
 
   const applyCoupon = () => {
+    // TODO: fetch coupon code from backend
     if (couponCode.toLowerCase() === "shanto$$") {
-      setAppliedDiscount(0.2); // 20% additional discount
+      // setAppliedDiscount(0.2); // 20% additional discount
+      setDiscount(0.2);
       setDiscountError("");
     } else {
-      setAppliedDiscount(0);
+      // setAppliedDiscount(0);
+      setDiscount(0);
       setDiscountError("Invalid discount code. Please try again.");
     }
   };
@@ -160,8 +164,6 @@ export default function Pricing() {
     });
     setPricingModel(model);
   }
-
-  console.log("Selected pricing model: ", pricingModel);
 
   return (
     <Section id="pricing" ref={sectionRef} className="relative">
@@ -255,7 +257,7 @@ export default function Pricing() {
               transition={{ duration: 0.5 }}
             >
               <AnimatePresence>
-                {appliedDiscount > 0 && (
+                {discount > 0 && (
                   <motion.div
                     className="mb-2 rounded-full bg-green-500 px-4 py-2 text-white"
                     initial={{ opacity: 0, y: 20 }}
