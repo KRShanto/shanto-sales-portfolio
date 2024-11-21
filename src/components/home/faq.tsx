@@ -67,7 +67,10 @@ export default function Faq() {
       <Accordion className="mx-auto w-[50rem]">
         {questions.map((e, i) => {
           return (
-            <Tab key={i} className="my-2 rounded-lg border border-border">
+            <Tab
+              key={i}
+              className="my-2 rounded-lg border border-border backdrop-blur-sm"
+            >
               <Trigger>{e.question}</Trigger>
               <Content className="text-lg">{e.answer}</Content>
             </Tab>
