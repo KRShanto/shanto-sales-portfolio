@@ -1,11 +1,10 @@
-"use client";
-
-import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Logo from "../../public/icon.png";
+import { NAV_LINKS } from "@/lib/constants";
 
-export default function Nabar() {
+export default function Navbar() {
   return (
     <nav className="mx-auto flex w-[80vw] items-center justify-between py-5">
       {/* Logo */}
@@ -19,24 +18,15 @@ export default function Nabar() {
 
       {/* Links */}
       <div className="flex space-x-10 text-lg font-semibold text-gray-400">
-        <Link href="#" className="nav-link hover:text-gray-100">
-          Home
-        </Link>
-        <Link href="#why" className="nav-link hover:text-gray-100">
-          Why
-        </Link>
-        <Link href="#learn" className="nav-link hover:text-gray-100">
-          Learn
-        </Link>
-        <Link href="#portfolio" className="nav-link hover:text-gray-100">
-          Portfolio
-        </Link>
-        <Link href="#pricing" className="nav-link hover:text-gray-100">
-          Pricing
-        </Link>
-        <Link href="#contact" className="nav-link hover:text-gray-100">
-          Contact
-        </Link>
+        {NAV_LINKS.map((link) => (
+          <Link
+            key={link.name}
+            href={link.href}
+            className="nav-link hover:text-gray-100"
+          >
+            {link.name}
+          </Link>
+        ))}
       </div>
     </nav>
   );

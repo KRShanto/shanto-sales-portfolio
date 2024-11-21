@@ -5,6 +5,12 @@ import LinkedIn from "../../public/linkedin-logo.png";
 import Email from "../../public/email-logo.png";
 import Discord from "../../public/discord-logo.png";
 import { PricingModel } from "@/types/pricing";
+import { FaHome } from "react-icons/fa";
+import { FaQuestion } from "react-icons/fa";
+import { FaBook } from "react-icons/fa6";
+import { MdOutlineWork } from "react-icons/md";
+import { FaDollarSign } from "react-icons/fa";
+import { FaPhone } from "react-icons/fa";
 
 export const SOCIAL_LINKS = [
   {
@@ -99,4 +105,13 @@ export const PRICING_MODEL = [
       "A/B testing setup",
     ],
   },
+];
+
+export const NAV_LINKS = [
+  { name: "Home", href: "#", icon: FaHome },
+  { name: "Why", href: "#why", icon: FaQuestion },
+  { name: "Learn", href: "#learn", icon: FaBook },
+  { name: "Portfolio", href: "#portfolio", icon: MdOutlineWork },
+  { name: "Pricing", href: "#pricing", icon: FaDollarSign },
+  { name: "Contact", href: "#contact", icon: FaPhone },
 ];

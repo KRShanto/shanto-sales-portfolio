@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { HeroHighlight } from "@/components/ui/bg-highlight";
 import Navbar from "@/components/navbar";
+import SideNavbar from "@/components/side-navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,6 +27,7 @@ export default function RootLayout({
           >
             <div className="">
               <Navbar />
+              <SideNavbar />
               <main>{children}</main>
             </div>
           </ThemeProvider>
