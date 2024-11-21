@@ -91,8 +91,19 @@ export default function Pricing() {
   // const [appliedDiscount, setAppliedDiscount] = useState(0);
   const [discountError, setDiscountError] = useState("");
   const [showDiscountInput, setShowDiscountInput] = useState(false);
-  const { pricingModel, discount, setPricingModel, setDiscount } =
-    useSelectPricing();
+  const {
+    pricingModel,
+    discount,
+    additionalFeatures,
+    setPricingModel,
+    setDiscount,
+    addAdditionalFeature,
+    removeAdditionalFeature,
+  } = useSelectPricing();
+
+  const prevSelectedAddOns = useRef<{
+    [key: string]: { [key: string]: boolean };
+  }>({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -114,6 +125,43 @@ export default function Pricing() {
     };
   }, []);
 
+  // Handle side-effects after selectedAddOns changes
+  useEffect(() => {
+    Object.keys(selectedAddOns).forEach((plan) => {
+      const prevPlanAddOns = prevSelectedAddOns.current[plan] || {};
+      const currentPlanAddOns = selectedAddOns[plan] || {};
+
+      Object.keys(currentPlanAddOns).forEach((addOn) => {
+        const wasSelected = prevPlanAddOns[addOn] || false;
+        const isSelected = currentPlanAddOns[addOn];
+
+        if (!wasSelected && isSelected) {
+          // Add the additional feature
+          const addOnPrice =
+            pricingPlans
+              .find((p) => p.name === plan)
+              ?.addOns?.find((a) => a.name === addOn)?.price || 0;
+
+          addAdditionalFeature({
+            name: addOn,
+            price: addOnPrice,
+          });
+        } else if (wasSelected && !isSelected) {
+          // Remove the additional feature
+          removeAdditionalFeature(addOn);
+        }
+      });
+    });
+
+    // Update previous state
+    prevSelectedAddOns.current = selectedAddOns;
+  }, [
+    selectedAddOns,
+    addAdditionalFeature,
+    removeAdditionalFeature,
+    pricingPlans,
+  ]);
+
   const toggleAddOn = (plan: string, addOn: string) => {
     setSelectedAddOns((prev) => ({
       ...prev,
@@ -123,6 +171,8 @@ export default function Pricing() {
       },
     }));
   };
+
+  console.log("Additional features: ", additionalFeatures);
 
   const calculatePrice = (basePrice: number | string, planName: string) => {
     if (typeof basePrice === "string") return basePrice; // For custom website
@@ -246,7 +296,7 @@ export default function Pricing() {
         </div>
 
         {/* Discount Section */}
-        {/* TODO: make it more animatied and attractive */}
+        {/* TODO: make it more animated and attractive */}
         <AnimatePresence>
           {isSectionVisible && (
             <motion.div
