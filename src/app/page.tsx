@@ -6,6 +6,8 @@ import Friends from "@/components/home/friends";
 import Pricing from "@/components/home/pricing";
 import NewsletterModal from "@/components/home/newsletter-modal";
 import Faq from "@/components/home/faq";
+import Contact from "@/components/home/contact";
+import Footer from "@/components/home/footer";
 
 export default function Page() {
   return (
@@ -18,6 +20,8 @@ export default function Page() {
       <NewsletterModal />
       <Pricing />
       <Faq />
+      <Contact />
+      <Footer />
     </>
   );
 }

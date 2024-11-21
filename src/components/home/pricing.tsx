@@ -20,7 +20,7 @@ const roboto = Roboto({
   weight: "700",
 });
 
-const pricingPlans = [
+export const pricingPlans = [
   {
     name: PricingModel.Basic,
     originalPrice: 999,
