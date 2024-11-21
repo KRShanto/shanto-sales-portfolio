@@ -15,7 +15,7 @@ import Link from "next/link";
 import { Roboto } from "next/font/google";
 import { PRICING_MODEL } from "@/lib/constants";
 import { Textarea } from "../ui/textarea";
-import { motion } from "framer-motion";
+import Growth from "@/../public/animations/Growth.json";
 
 const roboto = Roboto({
   weight: "700",
@@ -66,11 +66,18 @@ export default function Contact() {
     <Section id="contact">
       <SectionTitle text="Contact me" />
 
-      <div className="flex w-full gap-5">
+      <div className="flex w-full gap-20">
         <div className="h-[33rem] w-1/2">
           <Tabs tabs={tabs} />
         </div>
-        <div className="w-1/2 border">Hi</div>
+        <div className="flex w-1/2 items-center justify-center border">
+          <Lottie
+            animationData={Growth}
+            loop
+            autoplay
+            style={{ width: 300, margin: "" }}
+          />
+        </div>
       </div>
     </Section>
   );
