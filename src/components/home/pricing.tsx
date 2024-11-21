@@ -14,72 +14,12 @@ import Image from "next/image";
 import { PricingModel } from "@/types/pricing";
 import { useSelectPricing } from "@/hooks/useSelectPricing";
 import { Roboto } from "next/font/google";
+import { PRICING_MODEL } from "@/lib/constants";
 
 const roboto = Roboto({
   subsets: ["latin"],
   weight: "700",
 });
-
-export const pricingPlans = [
-  {
-    name: PricingModel.Basic,
-    originalPrice: 999,
-    price: 499,
-    features: [
-      "Single page responsive design",
-      "Contact form integration",
-      "Basic SEO optimization",
-      "Google Analytics integration",
-      "Mobile-first approach",
-      "1 round of revisions",
-      "Basic performance optimization",
-      "Cross-browser compatibility",
-    ],
-    addOns: [{ name: "AI Content Generation", price: 299 }],
-  },
-  {
-    name: PricingModel.Premium,
-    originalPrice: 2499,
-    price: 1249,
-    features: [
-      "Multi-page responsive design",
-      "Blog post templates",
-      "Advanced SEO optimization",
-      "Google Analytics and Search Console integration",
-      "Mobile-first approach",
-      "2 rounds of revisions",
-      "Advanced performance optimization",
-      "Cross-browser compatibility",
-      "Basic security features (SSL, form validation)",
-      "Social media sharing integration",
-      "Newsletter signup form",
-    ],
-    addOns: [
-      { name: "AI Content Generation", price: 299 },
-      { name: "Advanced Analytics Dashboard", price: 499 },
-    ],
-  },
-  {
-    name: PricingModel.Custom,
-    priceRange: "Custom",
-    features: [
-      "Custom multi-page responsive design",
-      "Advanced functionality (user accounts, dashboards)",
-      "AI-powered chatbot integration",
-      "Advanced SEO optimization with schema markup",
-      "Complete analytics suite integration",
-      "Mobile-first and PWA-ready approach",
-      "Unlimited revisions",
-      "Maximum performance optimization",
-      "Cross-browser and cross-device compatibility",
-      "Advanced security features (2FA, CAPTCHA)",
-      "Social media API integrations",
-      "Custom API development and integration",
-      "Automated content recommendations",
-      "A/B testing setup",
-    ],
-  },
-];
 
 export default function Pricing() {
   const sectionRef = useRef(null);
@@ -138,9 +78,9 @@ export default function Pricing() {
         if (!wasSelected && isSelected) {
           // Add the additional feature
           const addOnPrice =
-            pricingPlans
-              .find((p) => p.name === plan)
-              ?.addOns?.find((a) => a.name === addOn)?.price || 0;
+            PRICING_MODEL.find((p) => p.name === plan)?.addOns?.find(
+              (a) => a.name === addOn,
+            )?.price || 0;
 
           addAdditionalFeature({
             name: addOn,
@@ -159,7 +99,7 @@ export default function Pricing() {
     selectedAddOns,
     addAdditionalFeature,
     removeAdditionalFeature,
-    pricingPlans,
+    PRICING_MODEL,
   ]);
 
   const toggleAddOn = (plan: string, addOn: string) => {
@@ -181,9 +121,9 @@ export default function Pricing() {
       .filter(([_, isSelected]) => isSelected)
       .reduce((total, [addOn]) => {
         const addOnPrice =
-          pricingPlans
-            .find((p) => p.name === planName)
-            ?.addOns?.find((a) => a.name === addOn)?.price || 0;
+          PRICING_MODEL.find((p) => p.name === planName)?.addOns?.find(
+            (a) => a.name === addOn,
+          )?.price || 0;
         return total + addOnPrice;
       }, 0);
 
@@ -222,7 +162,7 @@ export default function Pricing() {
       <SectionTitle text="Pricing" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-10 lg:space-y-0">
-          {pricingPlans.map((plan) => (
+          {PRICING_MODEL.map((plan) => (
             <BackgroundGradient
               key={plan.name}
               className="relative flex h-full flex-col rounded-2xl bg-zinc-950 p-8"

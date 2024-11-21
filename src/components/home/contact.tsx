@@ -13,7 +13,7 @@ import { useSelectPricing } from "@/hooks/useSelectPricing";
 import Question from "@/../public/animations/Question.json";
 import Link from "next/link";
 import { Roboto } from "next/font/google";
-import { pricingPlans } from "./pricing";
+import { PRICING_MODEL } from "@/lib/constants";
 import { Textarea } from "../ui/textarea";
 import { motion } from "framer-motion";
 
@@ -223,8 +223,9 @@ function Website() {
                     (acc, feature) => acc + feature.price,
                     0,
                   ) +
-                    pricingPlans.filter((plan) => plan.name === pricingModel)[0]
-                      .price!}
+                    PRICING_MODEL.filter(
+                      (plan) => plan.name === pricingModel,
+                    )[0].price!}
                 </p>
               </div>
             </div>
@@ -305,12 +306,14 @@ function Conclusion() {
             </li>
             <li>
               <strong>Total Price:</strong> $
-              {additionalFeatures.reduce(
-                (acc, feature) => acc + feature.price,
-                0,
-              ) +
-                pricingPlans.filter((plan) => plan.name === pricingModel)[0]
-                  .price!}
+              {pricingModel
+                ? additionalFeatures.reduce(
+                    (acc, feature) => acc + feature.price,
+                    0,
+                  ) +
+                  PRICING_MODEL.filter((plan) => plan.name === pricingModel)[0]
+                    .price!
+                : 0}
             </li>
           </ul>
         </div>
