@@ -2,11 +2,13 @@
 
 import { Roboto_Slab, Kanit } from "next/font/google";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
-import Myself from "../../../public/myself/Shanto1.png";
-import Image from "next/image";
-import { TextHoverEffect } from "../ui/text-hover-effect";
-import { BackgroundLines } from "../ui/background-lines";
+// import Myself from "../../../public/myself/Shanto1.png";
+// import Image from "next/image";
+// import { TextHoverEffect } from "../ui/text-hover-effect";
+// import { BackgroundLines } from "../ui/background-lines";
 import Section from "../section";
+import { OrbitingCirclesDemo } from "./OrbitingCirclesDemo";
+import CircleDemo from "./CircleDemo";
 
 const roboto = Roboto_Slab({
   weight: "600",
@@ -44,14 +46,8 @@ export default function Hero() {
         </div>
       </div>
       <div className="flex w-1/2 flex-col items-end">
-        <Image
-          src={Myself}
-          alt="Shanto"
-          placeholder="blur"
-          className="rounded-full border-8 border-blue-500"
-          width={450}
-          height={450}
-        />
+        <OrbitingCirclesDemo />
+        {/* <CircleDemo /> */}
         {/* TODO: give a better color and animation */}
         <h2 className="name-gradient" style={kanit.style}>
           KR Shanto
