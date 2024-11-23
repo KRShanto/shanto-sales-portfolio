@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { MessageCircle, Send, X, User, Bot } from "lucide-react";
+import { MessageCircle, Send, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,19 +12,21 @@ import {
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { chat } from "@/actions/chat";
+import { chat } from "@/actions/chat"; // Ensure this points to your chat function
 import { v4 as uuidv4 } from "uuid";
 import Image from "next/image";
 import SupportBot from "../../public/support-bot.png";
 import { motion, AnimatePresence } from "framer-motion";
 
 type Message = {
+  id: string;
   text: string;
   sender: "user" | "bot";
 };
 
 const initialMessages: Message[] = [
   {
+    id: uuidv4(),
     text: "Hello! I'm a bot created by Shanto. How can I help you today?",
     sender: "bot",
   },
@@ -36,14 +38,17 @@ export default function ChatSupport() {
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const [sessionId] = useState(() => {
+  const [sessionId, setSessionId] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Initialize sessionId on the client-side
     let id = sessionStorage.getItem("chat-session-id");
     if (!id) {
       id = uuidv4();
       sessionStorage.setItem("chat-session-id", id);
     }
-    return id;
-  });
+    setSessionId(id);
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -55,23 +60,36 @@ export default function ChatSupport() {
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (input.trim()) {
-      const newMessage: Message = {
-        text: input.trim(),
-        sender: "user",
-      };
-      setMessages([...messages, newMessage]);
-      setInput("");
+    if (!input.trim() || !sessionId) return;
 
+    const userMessage: Message = {
+      id: uuidv4(),
+      text: input.trim(),
+      sender: "user",
+    };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+
+    try {
       const botResponse = await chat({
         id: sessionId,
         text: input.trim(),
       });
+
       const botMessage: Message = {
+        id: uuidv4(),
         text: botResponse ?? "I'm sorry, something went wrong.",
         sender: "bot",
       };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
+    } catch (error) {
+      console.error("Error:", error);
+      const errorMessage: Message = {
+        id: uuidv4(),
+        text: "Sorry, something went wrong.",
+        sender: "bot",
+      };
+      setMessages((prevMessages) => [...prevMessages, errorMessage]);
     }
   };
 
@@ -82,7 +100,6 @@ export default function ChatSupport() {
           onClick={() => setIsOpen(true)}
           className="flex items-center justify-center rounded-full bg-primary p-2"
         >
-          {/* <MessageCircle className="h-6 w-6" /> */}
           <Image src={SupportBot} alt="Chat" width={60} height={40} />
           <span className="sr-only">Open chat</span>
         </button>
@@ -120,9 +137,9 @@ export default function ChatSupport() {
               </CardHeader>
               <CardContent>
                 <ScrollArea className="h-[25rem] pr-4 pt-3">
-                  {messages.map((message, index) => (
+                  {messages.map((message) => (
                     <div
-                      key={index}
+                      key={message.id}
                       className={`mb-4 flex ${
                         message.sender === "user"
                           ? "justify-end"
@@ -172,7 +189,7 @@ export default function ChatSupport() {
                     onChange={(e) => setInput(e.target.value)}
                     className="min-w-[25rem] flex-grow"
                   />
-                  <Button type="submit" size="icon">
+                  <Button type="submit" size="icon" disabled={!sessionId}>
                     <Send className="h-4 w-4" />
                     <span className="sr-only">Send message</span>
                   </Button>
