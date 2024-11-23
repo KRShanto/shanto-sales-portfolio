@@ -16,6 +16,7 @@ import { chat } from "@/actions/chat";
 import { v4 as uuidv4 } from "uuid";
 import Image from "next/image";
 import SupportBot from "../../public/support-bot.png";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Message = {
   text: string;
@@ -87,85 +88,100 @@ export default function ChatSupport() {
         </button>
       )}
 
-      {isOpen && (
-        <Card className="flex h-[35rem] w-[30rem] flex-col bg-gray-950 shadow-xl">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 rounded-t-lg bg-blue-800 p-4">
-            <div className="flex items-center space-x-2">
-              <Avatar>
-                <AvatarImage src="/support-bot-2.png" alt="Support Agent" />
-                <AvatarFallback>CS</AvatarFallback>
-              </Avatar>
-              <div>
-                <div className="font-semibold">Support bot</div>
-                <div className="text-xs text-muted-foreground">Online</div>
-              </div>
-            </div>
-            <Button
-              onClick={() => setIsOpen(false)}
-              size="icon"
-              variant="ghost"
-            >
-              <X className="h-4 w-4" />
-              <span className="sr-only">Close chat</span>
-            </Button>
-          </CardHeader>
-          <CardContent>
-            <ScrollArea className="h-[25rem] pr-4 pt-3">
-              {messages.map((message, index) => (
-                <div
-                  key={index}
-                  className={`mb-4 flex ${
-                    message.sender === "user" ? "justify-end" : "justify-start"
-                  }`}
-                >
-                  <div
-                    className={`flex items-end space-x-2 ${
-                      message.sender === "user"
-                        ? "flex-row-reverse space-x-reverse"
-                        : "flex-row"
-                    }`}
-                  >
-                    <Avatar className="h-8 w-8">
-                      {message.sender === "user" ? (
-                        <AvatarImage src="/user.png" alt="User" />
-                      ) : (
-                        <AvatarImage
-                          src="/support-bot.png"
-                          alt="Support Agent"
-                        />
-                      )}
-                    </Avatar>
-                    <div
-                      className={`max-w-[80%] rounded-lg p-3 ${
-                        message.sender === "user"
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted"
-                      }`}
-                    >
-                      {message.text}
-                    </div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 50 }}
+            transition={{ duration: 0.3 }}
+            className="fixed bottom-4 right-4"
+          >
+            <Card className="flex h-[35rem] w-[30rem] flex-col bg-gray-950 shadow-xl">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 rounded-t-lg bg-blue-800 p-4">
+                <div className="flex items-center space-x-2">
+                  <Avatar>
+                    <AvatarImage src="/support-bot-2.png" alt="Support Agent" />
+                    <AvatarFallback>CS</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <div className="font-semibold">Support bot</div>
+                    <div className="text-xs text-muted-foreground">Online</div>
                   </div>
                 </div>
-              ))}
-              <div ref={messagesEndRef} />
-            </ScrollArea>
-          </CardContent>
-          <CardFooter className="px-4">
-            <form onSubmit={handleSendMessage} className="flex w-full gap-2">
-              <Input
-                placeholder="Type your message..."
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                className="min-w-[25rem] flex-grow"
-              />
-              <Button type="submit" size="icon">
-                <Send className="h-4 w-4" />
-                <span className="sr-only">Send message</span>
-              </Button>
-            </form>
-          </CardFooter>
-        </Card>
-      )}
+                <Button
+                  onClick={() => setIsOpen(false)}
+                  size="icon"
+                  variant="ghost"
+                >
+                  <X className="h-4 w-4" />
+                  <span className="sr-only">Close chat</span>
+                </Button>
+              </CardHeader>
+              <CardContent>
+                <ScrollArea className="h-[25rem] pr-4 pt-3">
+                  {messages.map((message, index) => (
+                    <div
+                      key={index}
+                      className={`mb-4 flex ${
+                        message.sender === "user"
+                          ? "justify-end"
+                          : "justify-start"
+                      }`}
+                    >
+                      <div
+                        className={`flex items-end space-x-2 ${
+                          message.sender === "user"
+                            ? "flex-row-reverse space-x-reverse"
+                            : "flex-row"
+                        }`}
+                      >
+                        <Avatar className="h-8 w-8">
+                          {message.sender === "user" ? (
+                            <AvatarImage src="/user.png" alt="User" />
+                          ) : (
+                            <AvatarImage
+                              src="/support-bot.png"
+                              alt="Support Agent"
+                            />
+                          )}
+                        </Avatar>
+                        <div
+                          className={`max-w-[80%] rounded-lg p-3 ${
+                            message.sender === "user"
+                              ? "bg-primary text-primary-foreground"
+                              : "bg-muted"
+                          }`}
+                        >
+                          {message.text}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  <div ref={messagesEndRef} />
+                </ScrollArea>
+              </CardContent>
+              <CardFooter className="px-4">
+                <form
+                  onSubmit={handleSendMessage}
+                  className="flex w-full gap-2"
+                >
+                  <Input
+                    placeholder="Type your message..."
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    className="min-w-[25rem] flex-grow"
+                  />
+                  <Button type="submit" size="icon">
+                    <Send className="h-4 w-4" />
+                    <span className="sr-only">Send message</span>
+                  </Button>
+                </form>
+              </CardFooter>
+            </Card>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
