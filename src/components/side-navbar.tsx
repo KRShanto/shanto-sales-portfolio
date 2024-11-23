@@ -53,7 +53,7 @@ export default function SideNavbar() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="fixed left-5 top-1/2 z-50 flex -translate-y-1/2 transform flex-col items-center justify-center space-y-7 rounded-full border px-1 py-4 backdrop-blur-lg"
+          className="fixed left-5 top-1/2 z-50 flex -translate-y-1/2 transform flex-col items-center justify-center space-y-7 rounded-full border border-gray-600 px-1 py-4 backdrop-blur-lg"
           initial="hidden"
           animate="visible"
           exit="hidden"
@@ -72,7 +72,7 @@ function NavLink({
   link,
   variants,
 }: {
-  link: { name: string; href: string; icon: IconType };
+  link: { name: string; href: string; icon: IconType; iconColor: string };
   variants: any;
 }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -81,11 +81,15 @@ function NavLink({
     <motion.div variants={variants}>
       <Link
         href={link.href}
-        className="relative flex items-center space-x-2 rounded-full p-4 text-2xl text-gray-400 transition-all hover:scale-125 hover:border"
+        className="relative flex items-center space-x-2 rounded-full border-gray-200 p-4 text-2xl text-gray-300 transition-all hover:scale-125 hover:border"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <link.icon />
+        <link.icon
+          style={{
+            color: link.iconColor,
+          }}
+        />
 
         {/* Tooltip */}
         <span

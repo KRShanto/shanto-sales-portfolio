@@ -108,10 +108,20 @@ export const PRICING_MODEL = [
 ];
 
 export const NAV_LINKS = [
-  { name: "Home", href: "#", icon: FaHome },
-  { name: "Why", href: "#why", icon: FaQuestion },
-  { name: "Learn", href: "#learn", icon: FaBook },
-  { name: "Portfolio", href: "#portfolio", icon: MdOutlineWork },
-  { name: "Pricing", href: "#pricing", icon: FaDollarSign },
-  { name: "Contact", href: "#contact", icon: FaPhone },
+  { name: "Home", href: "#", icon: FaHome, iconColor: "white" },
+  { name: "Why", href: "#why", icon: FaQuestion, iconColor: "red" },
+  { name: "Learn", href: "#learn", icon: FaBook, iconColor: "blue" },
+  {
+    name: "Portfolio",
+    href: "#portfolio",
+    icon: MdOutlineWork,
+    iconColor: "green",
+  },
+  {
+    name: "Pricing",
+    href: "#pricing",
+    icon: FaDollarSign,
+    iconColor: "yellow",
+  },
+  { name: "Contact", href: "#contact", icon: FaPhone, iconColor: "purple" },
 ];
