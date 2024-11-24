@@ -8,12 +8,14 @@ import NewsletterModal from "@/components/home/newsletter-modal";
 import Faq from "@/components/home/faq";
 import Contact from "@/components/home/contact";
 import Footer from "@/components/home/footer";
+import Why from "../components/home/why";
 
 export default function Page() {
   return (
     <>
       <Hero />
       <Testimonial />
+      <Why />
       <Portfolio />
       <Blog />
       <Friends />
