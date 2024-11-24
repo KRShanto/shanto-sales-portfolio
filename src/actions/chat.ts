@@ -26,21 +26,11 @@ export async function chat({ id, text }: { id: string; text: string }) {
   // send the messages to OpenAI
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-  console.log("Message Queue", messageQueue[id]);
-
   const res = await openai.chat.completions.create({
     model: "gpt-4-turbo",
     messages: [{ role: "system", content: system }, ...messageQueue[id]],
     temperature: 0.5,
   });
-
-  console.log(res.choices[0].message.content);
-
-  // add the assistant message to the messages array
-  //   messages.push({
-  //     role: "assistant",
-  //     content: res.choices[0].message.content!,
-  //   });
 
   // Save the assistant message to the message queue
   messageQueue[id].push({
