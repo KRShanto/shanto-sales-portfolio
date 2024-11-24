@@ -9,6 +9,7 @@ import Faq from "@/components/home/faq";
 import Contact from "@/components/home/contact";
 import Footer from "@/components/home/footer";
 import Why from "../components/home/why";
+import WhyMore from "@/components/home/why-more";
 
 export default function Page() {
   return (
@@ -16,6 +17,7 @@ export default function Page() {
       <Hero />
       <Testimonial />
       <Why />
+      <WhyMore />
       <Portfolio />
       <Blog />
       <Friends />

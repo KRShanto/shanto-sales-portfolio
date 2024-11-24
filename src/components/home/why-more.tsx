@@ -14,32 +14,34 @@ const fredoka = Fredoka({
 
 const reasons = [
   {
-    title: "Demonstrate Your Expertise",
+    title: "Generate Leads",
     description:
-      "A well-crafted portfolio proves your abilites and helps potential clients see the value you can provide.",
+      "Effectively capture visitor information through forms and calls-to-action, transforming casual visitors into potential clients.",
   },
   {
-    title: "Stand Out from the Competition",
+    title: "Showcase Your Work",
     description:
-      "There's competition in everything in life. When you change your mindset aroundit, you'll start winning.",
+      "Display your portfolio in an organized manner, allowing potential clients to quickly assess your skills and experience.",
   },
   {
-    title: "Close More Clients",
-    description: `An impressive portfolio can build KLT (Know, Like, Trust), will let you charge sky-high prices, and will do the "selling" FOR you.`,
+    title: "Increase Online Visibility",
+    description:
+      "Enhance your presence on search engines, making it easier for clients to find your services and boosting traffic to your site.",
   },
   {
-    title: "Increase Your Online Presence",
+    title: "Build Trust and Credibility",
     description:
-      "A portfolio website is the best way to showcase your work and let people know who you are.",
+      "Utilize testimonials and case studies to convey expertise and reliability, fostering a connection with potential clients.",
   },
 ];
 
-const colors = ["#3b82f6", "#22c55e", "#f97316", "#6366f1"];
+const colors = ["#ec4899", "#ef4444", "#10b981", "#06b6d4"];
 
-export default function Why() {
+export default function WhyMore() {
   return (
-    <Section id="why">
-      <SectionTitle text="Why YOU need a Landing page?" />
+    <Section id="landing-page-can">
+      <SectionTitle text="A Landing Page Can" />
+
       <div className="mx-auto mt-14 grid w-[70rem] grid-cols-1 gap-24 md:grid-cols-2">
         {reasons.map((reason, index) => (
           <motion.div
@@ -52,18 +54,18 @@ export default function Why() {
               cursor: "default",
             }}
             whileHover={{
-              scale: 1.05,
-              rotateY: 10,
-              rotateX: 10,
-              boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)",
+              scale: 1.1,
+              rotateY: 15,
+              rotateX: 15,
+              boxShadow: "0px 15px 30px rgba(0, 0, 0, 0.3)",
               cursor: "default",
             }}
-            whileTap={{ scale: 0.95, rotateY: -10, rotateX: -10 }}
+            whileTap={{ scale: 0.9, rotateY: -15, rotateX: -15 }}
             onMouseMove={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
               const x = e.clientX - rect.left;
               const y = e.clientY - rect.top;
-              e.currentTarget.style.transform = `rotateY(${(x - rect.width / 2) / 20}deg) rotateX(${-(y - rect.height / 2) / 20}deg)`;
+              e.currentTarget.style.transform = `rotateY(${(x - rect.width / 2) / 15}deg) rotateX(${-(y - rect.height / 2) / 15}deg)`;
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = `rotateY(0deg) rotateX(0deg)`;
