@@ -9,6 +9,7 @@ import { IconType } from "react-icons/lib";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { Roboto } from "next/font/google";
+import { NavLink as NavLinkType } from "@/types/navlink";
 
 const roboto = Roboto({
   weight: "500",
@@ -73,13 +74,7 @@ export default function SideNavbar() {
   );
 }
 
-function NavLink({
-  link,
-  variants,
-}: {
-  link: { name: string; href: string; icon: IconType; iconColor: string };
-  variants: any;
-}) {
+function NavLink({ link, variants }: { link: NavLinkType; variants: any }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -106,12 +101,12 @@ function NavLink({
         {isHovered && (
           <span
             className={cn(
-              "absolute left-full ml-2 rounded-full bg-neutral-800 px-5 py-1 text-base font-bold text-white opacity-100 transition-opacity duration-200",
+              "absolute left-full ml-2 w-[12rem] rounded-full border border-neutral-700 bg-neutral-900 px-5 py-1 text-center text-base font-bold text-white opacity-100 transition-opacity duration-200",
               isHovered ? "opacity-100" : "opacity-0",
             )}
             style={roboto.style}
           >
-            {link.name}
+            {link.longName}
           </span>
         )}
       </Link>
