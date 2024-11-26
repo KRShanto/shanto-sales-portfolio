@@ -8,13 +8,15 @@ export default function Navbar() {
   return (
     <nav className="mx-auto flex w-[80vw] items-center justify-between py-5">
       {/* Logo */}
-      <Image
-        src={Logo}
-        alt="Logo"
-        width={60}
-        height={60}
-        className="rounded-full"
-      />
+      <Link href="/">
+        <Image
+          src={Logo}
+          alt="Logo"
+          width={60}
+          height={60}
+          className="rounded-full"
+        />
+      </Link>
 
       {/* Links */}
       <div className="flex space-x-10 text-lg font-semibold text-gray-400">
