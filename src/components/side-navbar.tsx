@@ -89,7 +89,9 @@ function NavLink({
         aria-label={link.name}
         className={cn(
           "relative flex h-12 w-12 transform items-center justify-center rounded-full bg-neutral-800 text-2xl text-gray-300 transition-transform hover:scale-125",
-          isHovered ? "border-2 border-white" : "border-2 border-transparent",
+          isHovered
+            ? "border-2 border-neutral-700"
+            : "border-2 border-transparent",
         )}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -104,7 +106,7 @@ function NavLink({
         {isHovered && (
           <span
             className={cn(
-              "absolute left-full ml-2 rounded-full bg-black px-2 py-1 text-base font-bold text-white opacity-100 transition-opacity duration-200",
+              "absolute left-full ml-2 rounded-full bg-neutral-800 px-5 py-1 text-base font-bold text-white opacity-100 transition-opacity duration-200",
               isHovered ? "opacity-100" : "opacity-0",
             )}
             style={roboto.style}
