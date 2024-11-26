@@ -1,4 +1,7 @@
+// side-navbar.tsx
+
 "use client";
+
 import React, { useState, useEffect } from "react";
 import { NAV_LINKS } from "@/lib/constants";
 import Link from "next/link";
@@ -18,7 +21,6 @@ export default function SideNavbar() {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 700) {
-        // Changed from 500 to 700
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -33,35 +35,38 @@ export default function SideNavbar() {
   }, []);
 
   const containerVariants = {
-    hidden: { height: 0, opacity: 0 },
+    hidden: { opacity: 0 },
     visible: {
-      height: "auto",
       opacity: 1,
       transition: {
         when: "beforeChildren",
-        staggerChildren: 0.1,
+        staggerChildren: 0.1, // Staggered animation for icons
+        type: "spring",
+        stiffness: 300,
       },
     },
   };
 
   const iconVariants = {
-    hidden: { y: -20, opacity: 0 },
-    visible: { y: 0, opacity: 1 },
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1 },
   };
 
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="fixed left-5 top-1/2 z-50 flex -translate-y-1/2 transform flex-col items-center justify-center space-y-7 rounded-full border border-gray-600 px-1 py-4 backdrop-blur-lg"
+          className="fixed left-5 top-0 z-40 flex h-screen items-center justify-center"
           initial="hidden"
           animate="visible"
           exit="hidden"
           variants={containerVariants}
         >
-          {NAV_LINKS.map((link) => (
-            <NavLink key={link.name} link={link} variants={iconVariants} />
-          ))}
+          <div className="flex flex-col items-center space-y-4 rounded-full bg-neutral-900 px-3 py-8">
+            {NAV_LINKS.map((link) => (
+              <NavLink key={link.name} link={link} variants={iconVariants} />
+            ))}
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
@@ -81,7 +86,11 @@ function NavLink({
     <motion.div variants={variants}>
       <Link
         href={link.href}
-        className="relative flex items-center space-x-2 rounded-full border-gray-200 p-4 text-2xl text-gray-300 transition-all hover:scale-125 hover:border"
+        aria-label={link.name}
+        className={cn(
+          "relative flex h-12 w-12 transform items-center justify-center rounded-full bg-neutral-800 text-2xl text-gray-300 transition-transform hover:scale-125",
+          isHovered ? "border-2 border-white" : "border-2 border-transparent",
+        )}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -92,15 +101,17 @@ function NavLink({
         />
 
         {/* Tooltip */}
-        <span
-          className={cn(
-            "absolute left-full ml-2 rounded-full px-2 py-1 text-base font-bold text-white opacity-0 transition-opacity duration-300",
-            isHovered ? "opacity-100" : "",
-          )}
-          style={roboto.style}
-        >
-          {link.name}
-        </span>
+        {isHovered && (
+          <span
+            className={cn(
+              "absolute left-full ml-2 rounded-full bg-black px-2 py-1 text-base font-bold text-white opacity-100 transition-opacity duration-200",
+              isHovered ? "opacity-100" : "opacity-0",
+            )}
+            style={roboto.style}
+          >
+            {link.name}
+          </span>
+        )}
       </Link>
     </motion.div>
   );
