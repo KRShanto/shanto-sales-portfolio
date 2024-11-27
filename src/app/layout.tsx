@@ -3,6 +3,10 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { HeroHighlight } from "@/components/ui/bg-highlight";
 import Navbar from "@/components/navbar";
+import SideNavbar from "@/components/side-navbar";
+import SocialNavbar from "@/components/social-navbar";
+import ChatSupport from "@/components/chat-support";
+import { createPortal } from "react-dom";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,8 +28,11 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="">
+            <div id="scroll-area" className="h-screen overflow-hidden">
               <Navbar />
+              <SideNavbar />
+              <SocialNavbar />
+              <ChatSupport />
               <main>{children}</main>
             </div>
           </ThemeProvider>

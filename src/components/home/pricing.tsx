@@ -15,6 +15,7 @@ import { PricingModel } from "@/types/pricing";
 import { useSelectPricing } from "@/hooks/useSelectPricing";
 import { Roboto } from "next/font/google";
 import { PRICING_MODEL } from "@/lib/constants";
+import AiButton from "../ui/animata/button/ai-button";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -40,6 +41,7 @@ export default function Pricing() {
     addAdditionalFeature,
     removeAdditionalFeature,
   } = useSelectPricing();
+  const [hoverdCard, setHoverdCard] = useState<number | null>(null);
 
   const prevSelectedAddOns = useRef<{
     [key: string]: { [key: string]: boolean };
@@ -162,12 +164,14 @@ export default function Pricing() {
       <SectionTitle text="Pricing" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-10 lg:space-y-0">
-          {PRICING_MODEL.map((plan) => (
+          {PRICING_MODEL.map((plan, index) => (
             <BackgroundGradient
               key={plan.name}
               className="relative flex h-full flex-col rounded-2xl bg-zinc-950 p-8"
               animate={false}
               containerClassName="transition-transform duration-300 ease-in-out scale-100 hover:scale-105"
+              onMouseEnter={() => setHoverdCard(index)}
+              onMouseLeave={() => setHoverdCard(null)}
             >
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-gray-300">
@@ -224,13 +228,22 @@ export default function Pricing() {
                   ))}
                 </div>
               )}
-              <Button
-                className="mt-8 text-xl transition-transform duration-300 ease-in-out active:scale-95"
-                style={roboto.style}
-                onClick={() => handleOnClick(plan.name)}
-              >
-                Get started
-              </Button>
+
+              {/* TODO: smooth transition */}
+              {hoverdCard === index ? (
+                <AiButton
+                  text="Get Started"
+                  onClick={() => handleOnClick(plan.name)}
+                />
+              ) : (
+                <button
+                  className="my-8 rounded-full border border-gray-300 px-4 py-2"
+                  style={roboto.style}
+                  onClick={() => handleOnClick(plan.name)}
+                >
+                  Get started
+                </button>
+              )}
             </BackgroundGradient>
           ))}
         </div>

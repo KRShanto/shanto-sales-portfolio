@@ -2,13 +2,16 @@
 
 import { Roboto_Slab, Kanit } from "next/font/google";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
-// import Myself from "../../../public/myself/Shanto1.png";
-// import Image from "next/image";
-// import { TextHoverEffect } from "../ui/text-hover-effect";
-// import { BackgroundLines } from "../ui/background-lines";
+import Myself from "../../../public/myself/Shanto1.png";
+import Image from "next/image";
 import Section from "../section";
+import LetterPullup from "../ui/letter-pullup";
+import GradualSpacing from "../ui/gradual-spacing";
+import { ChevronRight } from "lucide-react";
+import AnimatedGradientText from "../ui/animated-gradient-text";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { OrbitingCirclesDemo } from "./OrbitingCirclesDemo";
-import CircleDemo from "./CircleDemo";
 
 const roboto = Roboto_Slab({
   weight: "600",
@@ -28,19 +31,25 @@ export default function Hero() {
           you generate your Leads.
         </h1>
         <p className="mt-5 text-2xl text-gray-400">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. lorem20
+          lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
 
         <div>
-          <HoverBorderGradient
-            containerClassName="rounded-full mt-10"
-            as="button"
-            className="flex items-center space-x-2 bg-white text-lg text-black dark:bg-black dark:text-white"
-          >
-            Get Started
-          </HoverBorderGradient>
-          <p className="relative left-2 text-sm text-gray-400">
+          <Link className="mt-10 block w-fit" href="/#pricing">
+            <AnimatedGradientText>
+              <span
+                className={cn(
+                  `animate-gradient inline bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text px-6 text-2xl text-transparent`,
+                )}
+              >
+                Get Started
+              </span>
+              <ChevronRight className="ml-1 size-5 text-violet-600 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+            </AnimatedGradientText>
+          </Link>
+
+          <p className="relative left-2 mt-2 text-sm text-gray-400">
             50+ people like you already have (Purchased) a landing page.
           </p>
         </div>

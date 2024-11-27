@@ -5,6 +5,13 @@ import LinkedIn from "../../public/linkedin-logo.png";
 import Email from "../../public/email-logo.png";
 import Discord from "../../public/discord-logo.png";
 import { PricingModel } from "@/types/pricing";
+import { FaHome } from "react-icons/fa";
+import { FaQuestion } from "react-icons/fa";
+import { FaBook } from "react-icons/fa6";
+import { MdOutlineWork } from "react-icons/md";
+import { FaDollarSign } from "react-icons/fa";
+import { FaPhone } from "react-icons/fa";
+import { NavLink } from "@/types/navlink";
 
 export const SOCIAL_LINKS = [
   {
@@ -98,5 +105,50 @@ export const PRICING_MODEL = [
       "Automated content recommendations",
       "A/B testing setup",
     ],
+  },
+];
+
+export const NAV_LINKS: NavLink[] = [
+  {
+    name: "Home",
+    longName: "Home",
+    href: "#",
+    icon: FaHome,
+    iconColor: "white",
+  },
+  {
+    name: "Why",
+    longName: "Why landing page?",
+    href: "#why",
+    icon: FaQuestion,
+    iconColor: "#ef4444",
+  },
+  {
+    name: "Learn",
+    longName: "Learn more",
+    href: "#learn",
+    icon: FaBook,
+    iconColor: "#3b82f6",
+  },
+  {
+    name: "Portfolio",
+    longName: "My works",
+    href: "#portfolio",
+    icon: MdOutlineWork,
+    iconColor: "#22c55e",
+  },
+  {
+    name: "Pricing",
+    longName: "Pricing",
+    href: "#pricing",
+    icon: FaDollarSign,
+    iconColor: "#eab308",
+  },
+  {
+    name: "Contact",
+    longName: "Contact me",
+    href: "#contact",
+    icon: FaPhone,
+    iconColor: "#6366f1",
   },
 ];

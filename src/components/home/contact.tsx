@@ -16,6 +16,7 @@ import { Roboto } from "next/font/google";
 import { PRICING_MODEL } from "@/lib/constants";
 import { Textarea } from "../ui/textarea";
 import Growth from "@/../public/animations/Growth.json";
+import IconCloud from "../ui/icon-cloud";
 
 const roboto = Roboto({
   weight: "700",
@@ -61,6 +62,40 @@ const tabs = [
   },
 ];
 
+const slugs = [
+  "html",
+  "css",
+  "javascript",
+  "figma",
+  "nodejs",
+  "firebase",
+  "github",
+  "react",
+  "tailwindcss",
+  "typescript",
+  "python",
+  "nextjs",
+  "mongodb",
+  "mysql",
+  "postgresql",
+  "sqlite",
+  "django",
+  "php",
+  "laravel",
+  "wordpress",
+  "rust",
+  "aws",
+  "prisma",
+  "apollo",
+  "asana",
+  "slack",
+  "discord",
+  "trello",
+  "jira",
+  "webflow",
+  "framer",
+];
+
 export default function Contact() {
   return (
     <Section id="contact">
@@ -70,13 +105,8 @@ export default function Contact() {
         <div className="h-[33rem] w-1/2">
           <Tabs tabs={tabs} />
         </div>
-        <div className="flex w-1/2 items-center justify-center border">
-          <Lottie
-            animationData={Growth}
-            loop
-            autoplay
-            style={{ width: 300, margin: "" }}
-          />
+        <div className="flex w-1/2 items-center justify-center">
+          <IconCloud iconSlugs={slugs} />
         </div>
       </div>
     </Section>
