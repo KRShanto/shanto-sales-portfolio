@@ -26,12 +26,13 @@ export default function Hero() {
     <Section className="mt-14 flex gap-5">
       <div className="relative w-1/2">
         <h1 className="text-8xl leading-[7rem]" style={roboto.style}>
-          A <span className="hero-gradient relative">Landing</span> page helps
-          you generate your Leads.
+          Let Your <span className="hero-gradient relative">Landing</span> Page
+          Work While You Sleep
         </h1>
         <p className="mt-5 text-2xl text-gray-400">
-          lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Your <b>Business</b> goals deserve better than a Generic Website.
+          Businesses that use <b>Landing Pages</b> see 3x more leads. Will yours
+          be next?
         </p>
 
         <div>
@@ -39,7 +40,7 @@ export default function Hero() {
             <AnimatedGradientText>
               <span
                 className={cn(
-                  `animate-gradient inline bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text px-6 text-2xl text-transparent`,
+                  `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text px-6 text-2xl text-transparent`,
                 )}
               >
                 Get Started

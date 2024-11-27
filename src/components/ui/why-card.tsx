@@ -57,7 +57,7 @@ export default function WhyCard({
       }}
     >
       <span
-        className="absolute -top-8 left-0 flex h-20 w-20 items-center justify-center rounded-full text-3xl font-bold"
+        className="absolute -top-8 left-0 flex h-20 w-20 items-center justify-center rounded-full border-2 border-neutral-300 text-5xl font-bold"
         style={{
           backgroundColor: colors[index % colors.length],
         }}
