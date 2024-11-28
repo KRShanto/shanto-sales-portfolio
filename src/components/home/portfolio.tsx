@@ -10,7 +10,7 @@ export default function Portfolio() {
     <Section id="portfolio">
       <SectionTitle text="My Portfolio" />
 
-      <div className="flex flex-wrap gap-10">
+      <div className="flex w-full flex-wrap justify-center gap-10">
         {projects.map((project, index) => (
           <CardContainer key={index} className="inter-var">
             <CardBody className="group/card relative h-[30rem] w-auto rounded-xl border border-black/[0.1] bg-gray-50 p-6 dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] sm:w-[30rem]">

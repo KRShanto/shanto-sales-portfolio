@@ -4,7 +4,7 @@ import Section from "../section";
 
 export default function Blog() {
   return (
-    <Section className="w-full" id="learn">
+    <Section className="w-full max-[900px]:w-[100vw]" id="learn">
       <HeroParallax products={products} />
     </Section>
   );
