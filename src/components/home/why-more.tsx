@@ -51,7 +51,7 @@ export default function WhyMore() {
     <Section id="landing-page-can">
       <SectionTitle text="A Landing Page Can" />
 
-      <div className="mx-auto mt-14 grid w-[70rem] grid-cols-1 gap-24 md:grid-cols-2">
+      <div className="mx-auto mt-14 grid w-[70rem] grid-cols-1 gap-24 max-[1400px]:w-[80vw] max-[1100px]:gap-8 md:grid-cols-2">
         {reasons.map((reason, index) => (
           <WhyCard
             key={index}
