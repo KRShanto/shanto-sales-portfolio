@@ -77,7 +77,7 @@ export default function WhyCard({
                 className="mx-auto"
                 translateZ={20}
               ></CardItem>
-              <p className="mt-2 text-xl text-neutral-500 dark:text-neutral-300 max-[1100px]:text-lg">
+              <p className="mt-2 text-base text-neutral-500 dark:text-neutral-300 md:text-xl md:max-[1100px]:text-lg">
                 {description}
               </p>
             </div>

@@ -10,10 +10,10 @@ export default function Friends() {
       id="friends"
     >
       <WavyBackground className="pb-40" waveWidth={40}>
-        <h2 className="inter-var text-center text-2xl font-bold text-white md:text-4xl lg:text-7xl">
+        <h2 className="inter-var p-3 text-center text-2xl font-bold text-white md:p-0 md:text-4xl lg:text-7xl">
           Meet My Friends and Teammates
         </h2>
-        <p className="inter-var mt-4 text-center text-lg font-normal text-white md:text-lg">
+        <p className="inter-var mt-4 p-3 text-center text-lg font-normal text-white md:p-0 md:text-lg">
           Obviously, I can&apos;t do everything alone. I have a team of friends
           and teammates who help me to build amazing products.
         </p>

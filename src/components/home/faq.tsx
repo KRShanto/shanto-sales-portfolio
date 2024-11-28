@@ -64,15 +64,15 @@ export default function Faq() {
     <Section id="questions">
       <SectionTitle text="Frequently Asked Questions" />
 
-      <Accordion className="mx-auto hidden w-[50rem] md:block">
+      <Accordion className="mx-auto md:block md:w-[50rem]">
         {questions.map((e, i) => {
           return (
             <Tab
               key={i}
               className="my-2 rounded-lg border border-border backdrop-blur-sm"
             >
-              <Trigger>{e.question}</Trigger>
-              <Content className="text-lg">{e.answer}</Content>
+              <Trigger className="text-lg md:text-xl">{e.question}</Trigger>
+              <Content className="text-base md:text-lg">{e.answer}</Content>
             </Tab>
           );
         })}

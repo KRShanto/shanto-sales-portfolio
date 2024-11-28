@@ -146,7 +146,7 @@ export const ProductCard = ({
           src={product.thumbnail}
           height="600"
           width="600"
-          className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top"
+          className="absolute inset-0 h-3/4 w-3/4 rounded-lg object-cover object-left-top md:h-full md:w-full"
           alt={product.title}
         />
       </Link>
