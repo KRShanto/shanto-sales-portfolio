@@ -92,18 +92,22 @@ const companies = [
 
 export default function Testimonial() {
   return (
-    <Section className="flex items-center">
-      <AnimatedTestimonials
-        testimonials={testimonials.map((testimonial) => ({
-          quote: testimonial.description,
-          name: testimonial.name,
-          designation: testimonial.title,
-          src: testimonial.image,
-        }))}
-        autoplay
-      />
+    <Section className="flex items-center max-[1300px]:flex-col">
+      <div className="w-1/2 max-[1300px]:w-full">
+        <AnimatedTestimonials
+          testimonials={testimonials.map((testimonial) => ({
+            quote: testimonial.description,
+            name: testimonial.name,
+            designation: testimonial.title,
+            src: testimonial.image,
+          }))}
+          autoplay
+        />
+      </div>
 
-      <InfiniteMovingCards items={companies} direction="right" speed="fast" />
+      <div className="w-1/2 max-[1300px]:w-full">
+        <InfiniteMovingCards items={companies} direction="right" speed="fast" />
+      </div>
     </Section>
   );
 }
