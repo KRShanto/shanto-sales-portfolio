@@ -12,7 +12,7 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
       - name: Create .env file
-        run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env && echo "SITE_URL=${{ secrets.SITE_URL }}" >> .env
+        run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env && echo "SITE_URL=${{ secrets.SITE_URL }}" >> .env && echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
       - name: Build docker image
         run: docker build -t krshanto/sales-portfolio .
       - name: Login to docker hub
