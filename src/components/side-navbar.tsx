@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { Roboto } from "next/font/google";
 import { NavLink as NavLinkType } from "@/types/navlink";
+import { useMediaQuery } from "react-responsive";
 
 const roboto = Roboto({
   weight: "500",
@@ -18,6 +19,7 @@ const roboto = Roboto({
 
 export default function SideNavbar() {
   const [isVisible, setIsVisible] = useState(false);
+  const is1450 = useMediaQuery({ query: "(max-width: 1450px)" });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +36,8 @@ export default function SideNavbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  if (is1450) return null;
 
   const containerVariants = {
     hidden: { opacity: 0 },
