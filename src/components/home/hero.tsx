@@ -33,30 +33,36 @@ const variants = {
 
 export default function Hero() {
   return (
-    <Section className="mt-14 flex gap-5">
+    <Section className="mt-0 flex flex-col-reverse gap-5 md:mt-14 md:flex-row">
       <motion.div
-        className="relative w-1/2"
+        className="relative w-full md:w-1/2"
         initial="hidden"
         animate="visible"
         transition={{ ...spring, delay: 0.2 }}
         variants={variants}
       >
-        <h1 className="text-8xl leading-[7rem]" style={roboto.style}>
+        <h1
+          className="text-5xl leading-[5rem] md:text-8xl md:leading-[7rem]"
+          style={roboto.style}
+        >
           Let Your <span className="hero-gradient relative">Landing</span> Page
           Work While You Sleep
         </h1>
-        <p className="mt-5 text-2xl text-gray-400" data-aos="fade-up-right">
+        <p
+          className="mt-3 text-xl text-gray-400 md:mt-5 md:text-2xl"
+          data-aos="fade-up-right"
+        >
           Your <b>Business</b> goals deserve better than a Generic Website.
           Businesses that use <b>Landing Pages</b> see 3x more leads. Will yours
           be next?
         </p>
 
         <div>
-          <Link className="mt-10 block w-fit" href="/#pricing">
+          <Link className="mt-6 block w-fit md:mt-10" href="/#pricing">
             <AnimatedGradientText>
               <motion.span
                 className={cn(
-                  `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text px-6 text-2xl text-transparent`,
+                  `animate-gradient inline bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text px-6 text-2xl text-transparent`,
                 )}
                 transition={{ ...spring, delay: 0.4 }}
                 variants={variants}
@@ -67,13 +73,13 @@ export default function Hero() {
             </AnimatedGradientText>
           </Link>
 
-          <p className="relative left-2 mt-2 text-sm text-gray-400">
+          <p className="relative left-2 mt-2 text-[12px] text-gray-400 md:text-sm">
             50+ people like you already have (Purchased) a landing page.
           </p>
         </div>
       </motion.div>
       <motion.div
-        className="flex w-1/2 flex-col items-end"
+        className="flex w-full flex-col items-end md:w-1/2"
         initial="hidden"
         animate="visible"
         transition={{ ...spring, delay: 0.6 }}
@@ -89,10 +95,13 @@ export default function Hero() {
           data-aos="fade-up"
         />
         {/* TODO: give a better color and animation */}
-        <h2 className="name-gradient" style={kanit.style}>
+        <h2
+          className="name-gradient text-center md:text-[100px]"
+          style={kanit.style}
+        >
           KR Shanto
         </h2>
-        <div className="w-[30rem]">
+        <div className="md:w-[30rem]">
           <TextGenerateEffect
             words={
               "I helped 50+ people to generate leads with a landing page. Most of them are happy with my service."

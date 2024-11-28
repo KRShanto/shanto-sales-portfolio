@@ -6,7 +6,7 @@ import { NAV_LINKS } from "@/lib/constants";
 
 export default function Navbar() {
   return (
-    <nav className="mx-auto flex w-[80vw] items-center justify-between py-5">
+    <nav className="mx-auto hidden w-[80vw] items-center justify-between py-5 md:flex">
       {/* Logo */}
       <Link href="/">
         <Image

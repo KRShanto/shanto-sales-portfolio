@@ -107,7 +107,7 @@ html {
 }
 
 .name-gradient {
-  font-size: 100px;
+  font-size: 70px;
   color: black;
   background: linear-gradient(-5deg, #eea94f, #fd014d, #2394d5, #2a5cf3);
   background-size: 200% 200%;
