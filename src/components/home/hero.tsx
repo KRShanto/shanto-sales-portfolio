@@ -33,7 +33,7 @@ const variants = {
 
 export default function Hero() {
   return (
-    <Section className="mt-0 flex flex-col-reverse gap-5 md:mt-14 md:flex-row">
+    <Section className="mt-16 flex flex-col-reverse gap-5 md:mt-14 md:flex-row">
       <motion.div
         className="relative w-full md:w-1/2"
         initial="hidden"
@@ -79,7 +79,7 @@ export default function Hero() {
         </div>
       </motion.div>
       <motion.div
-        className="flex w-full flex-col items-end md:w-1/2"
+        className="mt-5 flex w-full flex-col items-end md:mt-0 md:w-1/2"
         initial="hidden"
         animate="visible"
         transition={{ ...spring, delay: 0.6 }}

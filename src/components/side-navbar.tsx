@@ -20,6 +20,7 @@ const roboto = Roboto({
 export default function SideNavbar() {
   const [isVisible, setIsVisible] = useState(false);
   const is1450 = useMediaQuery({ query: "(max-width: 1450px)" });
+  const is650 = useMediaQuery({ query: "(max-width: 650px)" });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +38,7 @@ export default function SideNavbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (is1450) return null;
+  // if (is1450) return null;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -59,15 +60,15 @@ export default function SideNavbar() {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {(isVisible || is650) && (
         <motion.div
-          className="fixed left-5 top-0 z-40 flex h-screen items-center justify-center"
+          className="fixed left-40 z-[999] flex h-svh items-start justify-center md:left-5 md:top-0 md:items-center"
           initial="hidden"
           animate="visible"
           exit="hidden"
           variants={containerVariants}
         >
-          <div className="flex flex-col items-center space-y-4 rounded-full bg-neutral-900 px-3 py-8">
+          <div className="flex -translate-y-[244px] rotate-90 flex-col items-center space-y-4 bg-neutral-900 px-3 py-8 md:-translate-y-0 md:rotate-0 md:rounded-full">
             {NAV_LINKS.map((link) => (
               <NavLink key={link.name} link={link} variants={iconVariants} />
             ))}
@@ -82,7 +83,7 @@ function NavLink({ link, variants }: { link: NavLinkType; variants: any }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <motion.div variants={variants}>
+    <motion.div variants={variants} className="!-rotate-90 md:!transform-none">
       <Link
         href={link.href}
         aria-label={link.name}
@@ -105,7 +106,7 @@ function NavLink({ link, variants }: { link: NavLinkType; variants: any }) {
         {isHovered && (
           <span
             className={cn(
-              "absolute left-full ml-2 w-[12rem] rounded-full border border-neutral-700 bg-neutral-900 px-5 py-1 text-center text-base font-bold text-white opacity-100 transition-opacity duration-200",
+              "absolute left-full ml-2 hidden w-[12rem] rounded-full border border-neutral-700 bg-neutral-900 px-5 py-1 text-center text-base font-bold text-white opacity-100 transition-opacity duration-200 md:block",
               isHovered ? "opacity-100" : "opacity-0",
             )}
             style={roboto.style}
