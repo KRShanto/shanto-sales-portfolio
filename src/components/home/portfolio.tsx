@@ -50,7 +50,7 @@ export default function Portfolio() {
                     alt="thumbnail"
                   />
                 </CardItem>
-                <div className="mt-20 flex items-center justify-end">
+                <div className="mt-10 flex items-center justify-end md:mt-20">
                   {project.link ? (
                     <CardItem
                       translateZ={20}

@@ -100,7 +100,13 @@ export default function ChatSupport() {
           onClick={() => setIsOpen(true)}
           className="flex items-center justify-center rounded-full bg-primary p-2"
         >
-          <Image src={SupportBot} alt="Chat" width={60} height={40} />
+          <Image
+            src={SupportBot}
+            alt="Chat"
+            width={60}
+            height={40}
+            className="size-10 md:size-14"
+          />
           <span className="sr-only">Open chat</span>
         </button>
       )}
@@ -114,7 +120,7 @@ export default function ChatSupport() {
             transition={{ duration: 0.3 }}
             className="fixed bottom-4 right-4"
           >
-            <Card className="flex h-[35rem] w-[30rem] flex-col bg-gray-950 shadow-xl">
+            <Card className="flex h-[35rem] w-[22rem] flex-col bg-gray-950 shadow-xl md:w-[30rem]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 rounded-t-lg bg-blue-800 p-4">
                 <div className="flex items-center space-x-2">
                   <Avatar>
@@ -187,7 +193,7 @@ export default function ChatSupport() {
                     placeholder="Type your message..."
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    className="min-w-[25rem] flex-grow"
+                    className="min-w-[16rem] flex-grow md:min-w-[25rem]"
                   />
                   <Button type="submit" size="icon" disabled={!sessionId}>
                     <Send className="h-4 w-4" />

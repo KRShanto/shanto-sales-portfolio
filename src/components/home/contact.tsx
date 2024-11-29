@@ -101,11 +101,11 @@ export default function Contact() {
     <Section id="contact">
       <SectionTitle text="Contact me" />
 
-      <div className="flex w-full gap-20">
-        <div className="h-[33rem] w-1/2">
+      <div className="flex w-full flex-col-reverse gap-20 md:flex-row">
+        <div className="h-[33rem] w-full md:w-1/2">
           <Tabs tabs={tabs} />
         </div>
-        <div className="flex w-1/2 items-center justify-center">
+        <div className="flex w-full items-center justify-center md:w-1/2">
           <IconCloud iconSlugs={slugs} />
         </div>
       </div>
