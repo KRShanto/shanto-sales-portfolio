@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { TextGenerateEffect } from "../ui/text-generate-effect";
 import { motion } from "framer-motion";
+import { OrbitingCirclesDemo } from "./OrbitingCirclesDemo";
 
 const roboto = Roboto_Slab({
   weight: "600",
@@ -62,7 +63,7 @@ export default function Hero() {
             <AnimatedGradientText>
               <motion.span
                 className={cn(
-                  `animate-gradient inline bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text px-6 text-2xl text-transparent`,
+                  `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text px-6 text-2xl text-transparent`,
                 )}
                 transition={{ ...spring, delay: 0.4 }}
                 variants={variants}
@@ -85,7 +86,7 @@ export default function Hero() {
         transition={{ ...spring, delay: 0.6 }}
         variants={variants}
       >
-        <Image
+        {/* <Image
           src={Myself}
           alt="Shanto"
           placeholder="blur"
@@ -93,7 +94,8 @@ export default function Hero() {
           width={450}
           height={450}
           data-aos="fade-up"
-        />
+        /> */}
+        <OrbitingCirclesDemo />
         {/* TODO: give a better color and animation */}
         <h2
           className="name-gradient text-center md:text-[100px]"
