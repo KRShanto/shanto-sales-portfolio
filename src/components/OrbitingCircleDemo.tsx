@@ -34,7 +34,7 @@ export function OrbitingCirclesDemo() {
 
       {/* Outer Circles (reverse) */}
       <OrbitingCircles
-        className="size-[50px] border-none bg-transparent"
+        className="-z-10 size-[50px] border-none bg-transparent"
         radius={280}
         duration={20}
         reverse
@@ -42,7 +42,7 @@ export function OrbitingCirclesDemo() {
         <Icons.googleDrive />
       </OrbitingCircles>
       <OrbitingCircles
-        className="size-[50px] border-none bg-transparent"
+        className="-z-10 size-[50px] border-none bg-transparent"
         radius={280}
         duration={20}
         delay={20}
