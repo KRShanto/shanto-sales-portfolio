@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar";
 import SideNavbar from "@/components/side-navbar";
 import SocialNavbar from "@/components/social-navbar";
 import ChatSupport from "@/components/chat-support";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -33,6 +34,7 @@ export default function RootLayout({
               <SocialNavbar />
               <ChatSupport />
               <main>{children}</main>
+              <Toaster />
             </div>
           </ThemeProvider>
         </HeroHighlight>

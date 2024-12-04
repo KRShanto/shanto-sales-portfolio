@@ -1,7 +1,7 @@
 "use client";
 
 import { products } from "./blog";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   ModalBody,
@@ -15,11 +15,12 @@ import { Book, PartyPopper, Save, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "../ui/input";
+import { useToast } from "@/hooks/use-toast";
+import isEmail from "is-email";
+import { subscribe } from "@/actions/subscribe";
 
 export default function NewsletterModal() {
-  function handleSubmit(): void {
-    console.log("Submitted");
-  }
+  const [isExploding, setIsExploding] = useState(true);
 
   return (
     <div className="flex items-center justify-center">
@@ -92,15 +93,25 @@ export default function NewsletterModal() {
               </div>
             </div>
 
-            <form action={handleSubmit}>
+            <form>
               <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0">
                 <LabelInputContainer>
                   <Label htmlFor="firstname">First name</Label>
-                  <Input id="firstname" placeholder="Tyler" type="text" />
+                  <Input
+                    id="firstname"
+                    placeholder="Tyler"
+                    type="text"
+                    name="firstname"
+                  />
                 </LabelInputContainer>
                 <LabelInputContainer>
                   <Label htmlFor="lastname">Last name</Label>
-                  <Input id="lastname" placeholder="Durden" type="text" />
+                  <Input
+                    id="lastname"
+                    placeholder="Durden"
+                    type="text"
+                    name="lastname"
+                  />
                 </LabelInputContainer>
               </div>
               <LabelInputContainer className="mb-4">
@@ -109,16 +120,11 @@ export default function NewsletterModal() {
                   id="email"
                   placeholder="projectmayhem@fc.com"
                   type="email"
+                  name="email"
                 />
               </LabelInputContainer>
 
-              <button
-                className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
-                type="submit"
-              >
-                Subscribe &rarr;
-                <BottomGradient />
-              </button>
+              <Submit />
             </form>
           </ModalContent>
         </ModalBody>
@@ -200,3 +206,64 @@ const LabelInputContainer = ({
     </div>
   );
 };
+
+function Submit() {
+  const { toast } = useToast();
+  const { setOpen } = useModal();
+
+  async function handleSubmit(data: FormData) {
+    const firstName = data.get("firstname");
+    const lastName = data.get("lastname");
+    const email = data.get("email");
+
+    if (!firstName || !lastName || !email) {
+      toast({
+        title: "All fields are required",
+        description: "Please fill in all fields to subscribe",
+        variant: "success",
+      });
+      return;
+    }
+
+    if (!isEmail(email as string)) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter a valid email address",
+      });
+      return;
+    }
+
+    const res = await subscribe({
+      firstName: firstName as string,
+      lastName: lastName as string,
+      email: email as string,
+    });
+
+    if (res.success) {
+      toast({
+        title: "Subscribed",
+        description: `Welcome ${firstName} ${lastName}, you have successfully subscribed to KR Blog`,
+      });
+
+      // Close the modal
+      setOpen(false);
+    } else {
+      toast({
+        title: "Failed to subscribe",
+        description: "Please try again later",
+        variant: "destructive",
+      });
+    }
+  }
+
+  return (
+    <button
+      formAction={handleSubmit}
+      className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+      type="submit"
+    >
+      Subscribe &rarr;
+      <BottomGradient />
+    </button>
+  );
+}
