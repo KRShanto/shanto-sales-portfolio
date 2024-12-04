@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Newsletter {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  firstName String
+  lastName  String
+  email     String    @unique
+  savedFrom SavedFrom
+  createdAt DateTime  @default(now())
+}
+
+enum SavedFrom {
+  PORTFOLIO
+  BLOG
+}
+
+model ContactForm {
+  id                           String   @id @default(auto()) @map("_id") @db.ObjectId
+  firstName                    String
+  lastName                     String
+  email                        String
+  country                      String?
+  linkedin                     String?
+  businessCompany              String?
+  businessPosition             String?
+  businessEmail                String?
+  businessLinkedin             String?
+  businessCountry              String?
+  businessOtherURL             String?
+  websitePlan                  String
+  websitePlanFeatures          String // JSON
+  websiteAdditionalInformation String
+  discountCode                 String?
+  createdAt                    DateTime @default(now())
+}
