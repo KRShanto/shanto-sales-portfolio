@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../public/icon.png";
 import { NAV_LINKS } from "@/lib/constants";
+import AiButton from "./ui/animata/button/ai-button";
 
 export default function Navbar() {
   return (
@@ -19,7 +20,7 @@ export default function Navbar() {
       </Link>
 
       {/* Links */}
-      <div className="flex space-x-10 text-lg font-semibold text-gray-400">
+      <div className="flex items-center space-x-10 text-lg font-semibold text-gray-400">
         {NAV_LINKS.map((link) => (
           <Link
             key={link.name}

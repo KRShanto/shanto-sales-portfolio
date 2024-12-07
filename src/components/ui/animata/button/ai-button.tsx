@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useMemo, useState } from "react";
 import { Sparkle } from "lucide-react";
 import { loadFull } from "tsparticles";
@@ -146,26 +148,26 @@ export default function AiButton({
       onClick={onClick}
     >
       <div className="relative flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-300 via-blue-500 via-40% to-purple-500 px-4 py-2 text-white">
-        <Sparkle className="animate-sparkle size-6 -translate-y-0.5 fill-white" />
+        <Sparkle className="size-6 -translate-y-0.5 animate-sparkle fill-white" />
         <Sparkle
           style={{
             animationDelay: "1s",
           }}
-          className="animate-sparkle absolute bottom-2.5 left-3.5 z-20 size-2 rotate-12 fill-white"
+          className="absolute bottom-2.5 left-3.5 z-20 size-2 rotate-12 animate-sparkle fill-white"
         />
         <Sparkle
           style={{
             animationDelay: "1.5s",
             animationDuration: "2.5s",
           }}
-          className="animate-sparkle absolute left-5 top-2.5 size-1 -rotate-12 fill-white"
+          className="absolute left-5 top-2.5 size-1 -rotate-12 animate-sparkle fill-white"
         />
         <Sparkle
           style={{
             animationDelay: "0.5s",
             animationDuration: "2.5s",
           }}
-          className="animate-sparkle absolute left-3 top-3 size-1.5 fill-white"
+          className="absolute left-3 top-3 size-1.5 animate-sparkle fill-white"
         />
 
         <span className="font-semibold">{text}</span>
