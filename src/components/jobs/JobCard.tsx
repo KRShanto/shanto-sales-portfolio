@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Globe } from "lucide-react";
 import { FaClock, FaLaptopCode } from "react-icons/fa";
 import { JobListing } from "@/types/jobs";
+import Link from "next/link";
 
 interface JobCardProps {
   listing: JobListing;
@@ -24,37 +25,39 @@ const JobCard: React.FC<JobCardProps> = ({ listing, index }) => {
             stiffness: 100,
           }}
         >
-          <CardItem
-            className="flex cursor-pointer flex-col gap-3 rounded-lg bg-black p-5 shadow shadow-white transition-all duration-300 hover:bg-neutral-900"
-            translateZ={50}
-          >
-            <h2 className="text-3xl font-bold text-white">{listing.title}</h2>
+          <Link href={listing.href}>
+            <CardItem
+              className="flex cursor-pointer flex-col gap-3 rounded-lg bg-black p-5 shadow shadow-white transition-all duration-300"
+              translateZ={50}
+            >
+              <h2 className="text-3xl font-bold text-white">{listing.title}</h2>
 
-            <Image
-              src={listing.image}
-              alt={listing.title}
-              width={200}
-              height={200}
-              className="mx-auto"
-            />
-
-            <div className="flex items-center gap-2 text-gray-400">
-              <FaLaptopCode size={20} />
-              <p>{listing.company}</p>
-            </div>
-            <p className="text-gray-300">{listing.description}</p>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 rounded-full border border-gray-600 p-2 text-gray-400">
-                <FaClock size={20} />
-                <p>{listing.type}</p>
-              </div>
+              <Image
+                src={listing.image}
+                alt={listing.title}
+                width={200}
+                height={200}
+                className="mx-auto"
+              />
 
               <div className="flex items-center gap-2 text-gray-400">
-                <Globe size={20} />
-                <p>{listing.location}</p>
+                <FaLaptopCode size={20} />
+                <p>{listing.company}</p>
               </div>
-            </div>
-          </CardItem>
+              <p className="text-gray-300">{listing.description}</p>
+              <div className="mt-2 flex items-center justify-between">
+                <div className="flex items-center gap-2 rounded-full border border-gray-600 p-2 text-gray-400">
+                  <FaClock size={20} />
+                  <p>{listing.type}</p>
+                </div>
+
+                <div className="flex items-center gap-2 text-gray-400">
+                  <Globe size={20} />
+                  <p>{listing.location}</p>
+                </div>
+              </div>
+            </CardItem>
+          </Link>
         </motion.div>
       </CardBody>
     </CardContainer>

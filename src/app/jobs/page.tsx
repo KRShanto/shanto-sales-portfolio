@@ -17,6 +17,7 @@ const kanit = Kanit({
 const listings: JobListing[] = [
   {
     title: "Frontend Tester (React & Next.js)",
+    href: "/jobs/frontend-tester",
     description:
       "We're looking for a frontend tester to help us test our React and Next.js projects. You'll be responsible for testing the functionality of our web applications and ensuring that they meet our quality standards.",
     company: "Levant IT Solutions",
