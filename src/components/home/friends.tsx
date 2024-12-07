@@ -5,10 +5,7 @@ import { AnimatedTooltip } from "../ui/animated-tooltip";
 
 export default function Friends() {
   return (
-    <Section
-      className="relative w-full overflow-hidden max-[900px]:w-[100vw]"
-      id="friends"
-    >
+    <Section className="relative w-[99vw] overflow-hidden" id="friends">
       <WavyBackground className="pb-40" waveWidth={40}>
         <h2 className="inter-var p-3 text-center text-2xl font-bold text-white md:p-0 md:text-4xl lg:text-7xl">
           Meet My Friends and Teammates

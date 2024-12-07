@@ -4,7 +4,7 @@ import Myself from "../../../public/myself/Shanto1.png";
 
 export function OrbitingCirclesDemo() {
   return (
-    <div className="relative flex flex-col items-center justify-center rounded-lg md:shadow-xl">
+    <div className="relative hidden flex-col items-center justify-center rounded-lg md:flex md:shadow-xl">
       <Image
         src={Myself}
         alt="Shanto"

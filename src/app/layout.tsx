@@ -7,6 +7,7 @@ import SideNavbar from "@/components/side-navbar";
 import SocialNavbar from "@/components/social-navbar";
 import ChatSupport from "@/components/chat-support";
 import { Toaster } from "@/components/ui/toaster";
+import ResponsiveNavbar from "@/components/ResponsiveNavbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,6 +31,7 @@ export default function RootLayout({
           >
             <div className="">
               <Navbar />
+              <ResponsiveNavbar />
               <SideNavbar />
               <SocialNavbar />
               <ChatSupport />

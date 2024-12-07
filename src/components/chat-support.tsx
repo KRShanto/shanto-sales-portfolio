@@ -118,9 +118,9 @@ export default function ChatSupport() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 50 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-4 right-4"
+            className="fixed bottom-4 left-4 right-4 md:left-auto"
           >
-            <Card className="flex h-[35rem] w-[22rem] flex-col bg-gray-950 shadow-xl md:w-[30rem]">
+            <Card className="flex h-[35rem] w-full flex-col bg-gray-950 shadow-xl md:w-[30rem]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 rounded-t-lg bg-blue-800 p-4">
                 <div className="flex items-center space-x-2">
                   <Avatar>

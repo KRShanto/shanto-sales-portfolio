@@ -28,7 +28,7 @@ const tabs = [
     title: "Personal Information",
     value: "personal",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-10">
+      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-6 md:p-10">
         <Personal />
       </div>
     ),
@@ -37,7 +37,7 @@ const tabs = [
     title: "Business Information",
     value: "business",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-10">
+      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-6 md:p-10">
         <Business />
       </div>
     ),
@@ -46,7 +46,7 @@ const tabs = [
     title: "Website",
     value: "website",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-10">
+      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-6 md:p-10">
         <Website />
       </div>
     ),
@@ -55,7 +55,7 @@ const tabs = [
     title: "Conclusions",
     value: "conclusions",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-10">
+      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-6 md:p-10">
         <Conclusion />
       </div>
     ),
@@ -101,9 +101,9 @@ export default function Contact() {
     <Section id="contact">
       <SectionTitle text="Contact me" />
 
-      <div className="flex w-full flex-col-reverse gap-20 md:flex-row">
-        <div className="h-[33rem] w-full md:w-1/2">
-          <Tabs tabs={tabs} />
+      <div className="flex w-full flex-col gap-20 md:flex-row md:p-0">
+        <div className="h-[36rem] w-full md:h-[33rem] md:w-1/2">
+          <Tabs contentClassName="overflow-auto" tabs={tabs} />
         </div>
         <div className="flex w-full items-center justify-center md:w-1/2">
           <IconCloud iconSlugs={slugs} />
