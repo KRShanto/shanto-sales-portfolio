@@ -7,6 +7,8 @@ import { JobListing } from "@/types/jobs";
 
 export const metadata: Metadata = {
   title: "KR Shanto | Job Opportunities",
+  description:
+    "Looking for job opportunities? Browse through the listings below and don't hesitate to apply!",
 };
 
 const kanit = Kanit({

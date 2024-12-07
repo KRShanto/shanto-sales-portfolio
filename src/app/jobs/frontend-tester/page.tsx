@@ -2,6 +2,13 @@ import Image from "next/image";
 import React from "react";
 import Levant from "../../../../public/companies/levant.png";
 import Apply from "./Apply";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Frontend Tester (React & Next.js) at Levant IT Solution",
+  description:
+    "Join our team at Levant IT Solution, a leading CMMI Level 2 IT company that delivers cutting-edge technology solutions for businesses.",
+};
 
 export default function Page() {
   return (
