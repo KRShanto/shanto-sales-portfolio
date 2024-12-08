@@ -17,6 +17,8 @@ import { PRICING_MODEL } from "@/lib/constants";
 import { Textarea } from "../ui/textarea";
 import Growth from "@/../public/animations/Growth.json";
 import IconCloud from "../ui/icon-cloud";
+import LabelInputContainer from "../LabelInputContainer";
+import SubmitButton from "../SubmitButton";
 
 const roboto = Roboto({
   weight: "700",
@@ -110,50 +112,6 @@ export default function Contact() {
         </div>
       </div>
     </Section>
-  );
-}
-
-const BottomGradient = () => {
-  return (
-    <>
-      <span className="absolute inset-x-0 -bottom-px block h-px w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100" />
-      <span className="absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-0 blur-sm transition duration-500 group-hover/btn:opacity-100" />
-    </>
-  );
-};
-
-const LabelInputContainer = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
-  return (
-    <div className={cn("flex w-full flex-col space-y-2", className)}>
-      {children}
-    </div>
-  );
-};
-
-function SubmitButton({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <button
-      className={cn(
-        "group/btn relative block h-10 w-full rounded-full bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]",
-        className,
-      )}
-      type="submit"
-    >
-      {children}
-      <BottomGradient />
-    </button>
   );
 }
 
