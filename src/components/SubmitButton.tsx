@@ -1,13 +1,17 @@
 import { cn } from "@/lib/utils";
 import BottomGradient from "./BottomGradient";
+import React from "react";
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+  className?: string;
+}
 
 export default function SubmitButton({
   children,
   className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
+  ...props
+}: ButtonProps) {
   return (
     <button
       className={cn(
@@ -15,6 +19,7 @@ export default function SubmitButton({
         className,
       )}
       type="submit"
+      {...props}
     >
       {children}
       <BottomGradient />
