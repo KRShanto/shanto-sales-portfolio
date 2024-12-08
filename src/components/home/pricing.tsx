@@ -5,7 +5,7 @@ import { Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import Section from "../section";
 import SectionTitle from "../section-title";
 import { BackgroundGradient } from "../ui/background-gradient";
@@ -24,7 +24,8 @@ const roboto = Roboto({
 
 export default function Pricing() {
   const sectionRef = useRef(null);
-  const [isSectionVisible, setIsSectionVisible] = useState(false);
+  // const [isSectionVisible, setIsSectionVisible] = useState(false);
+  const isSectionVisible = useInView(sectionRef);
   const [selectedAddOns, setSelectedAddOns] = useState<{
     [key: string]: { [key: string]: boolean };
   }>({});
@@ -46,26 +47,6 @@ export default function Pricing() {
   const prevSelectedAddOns = useRef<{
     [key: string]: { [key: string]: boolean };
   }>({});
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsSectionVisible(entry.isIntersecting);
-      },
-      { threshold: 0.5 },
-    );
-
-    const currentSectionRef = sectionRef.current;
-    if (currentSectionRef) {
-      observer.observe(currentSectionRef);
-    }
-
-    return () => {
-      if (currentSectionRef) {
-        observer.unobserve(currentSectionRef);
-      }
-    };
-  }, []);
 
   // Handle side-effects after selectedAddOns changes
   useEffect(() => {
@@ -114,8 +95,6 @@ export default function Pricing() {
     }));
   };
 
-  console.log("Additional features: ", additionalFeatures);
-
   const calculatePrice = (basePrice: number | string, planName: string) => {
     if (typeof basePrice === "string") return basePrice; // For custom website
 
@@ -162,7 +141,7 @@ export default function Pricing() {
       {/* TODO: custom cursor */}
 
       <SectionTitle text="Pricing" />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-10 lg:space-y-0">
           {PRICING_MODEL.map((plan, index) => (
             <BackgroundGradient
@@ -177,7 +156,7 @@ export default function Pricing() {
                 <h3 className="text-xl font-semibold text-gray-300">
                   {plan.name}
                 </h3>
-                <p className="mt-4 flex items-baseline">
+                <p className="mt-4 flex flex-wrap items-baseline">
                   {"price" in plan ? (
                     <>
                       <span className="text-5xl font-extrabold tracking-tight">
@@ -253,7 +232,7 @@ export default function Pricing() {
         <AnimatePresence>
           {isSectionVisible && (
             <motion.div
-              className="fixed bottom-[20rem] right-5 flex flex-col items-end"
+              className="fixed bottom-[20rem] right-5 z-50 flex flex-col items-end"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 50 }}

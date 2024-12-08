@@ -34,7 +34,7 @@ const variants = {
 
 export default function Hero() {
   return (
-    <Section className="mt-16 flex flex-col-reverse gap-5 md:mt-14 md:flex-row">
+    <Section className="mt-16 flex flex-col-reverse gap-5 md:mt-14 md:flex-row md:p-0">
       <motion.div
         className="relative w-full md:w-1/2"
         initial="hidden"
@@ -43,7 +43,7 @@ export default function Hero() {
         variants={variants}
       >
         <h1
-          className="text-5xl leading-[5rem] md:text-8xl md:leading-[7rem]"
+          className="text-5xl leading-[4.5rem] md:text-8xl md:leading-[7rem]"
           style={roboto.style}
         >
           Let Your <span className="hero-gradient relative">Landing</span> Page
@@ -80,25 +80,25 @@ export default function Hero() {
         </div>
       </motion.div>
       <motion.div
-        className="mt-5 flex w-full flex-col items-end md:mt-0 md:w-1/2"
+        className="mt-5 flex w-full flex-col items-center md:mt-0 md:w-1/2 md:items-end"
         initial="hidden"
         animate="visible"
         transition={{ ...spring, delay: 0.6 }}
         variants={variants}
       >
-        {/* <Image
+        <Image
           src={Myself}
           alt="Shanto"
           placeholder="blur"
-          className="rounded-full border-8 border-blue-500"
+          className="block rounded-full border-8 border-blue-500 md:hidden"
           width={450}
           height={450}
           data-aos="fade-up"
-        /> */}
+        />
         <OrbitingCirclesDemo />
         {/* TODO: give a better color and animation */}
         <h2
-          className="name-gradient text-center md:text-[100px]"
+          className="name-gradient text-center !text-[60px] md:text-start md:!text-[100px]"
           style={kanit.style}
         >
           KR Shanto
