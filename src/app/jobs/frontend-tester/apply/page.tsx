@@ -26,17 +26,17 @@ export const defaultFormData = {
     phone: "",
   },
   professionalExperience: {
-    softwareTesting: "",
-    ReactTesting: "",
-    ReactNative: "",
+    softwareTesting: 0,
+    ReactTesting: 0,
+    ReactNative: 0,
     testingFrameWorks: "",
     workOnMobileApplication: "",
   },
   technicalSkills: {
-    javascriptRate: "",
-    typescriptRate: "",
-    ReactRate: "",
-    NextjsRate: "",
+    javascriptRate: 0,
+    typescriptRate: 0,
+    ReactRate: 0,
+    NextjsRate: 0,
     testingToolForApplication: "",
     automatedTestingExperience: "",
     endToEndTesting: "",
@@ -96,6 +96,9 @@ export default function Page() {
         <ProfessionalExperienceForm
           professionalExperience={formData.professionalExperience}
           onChange={(event) => handleChange(event, "professionalExperience")}
+          onSliderChange={(event) =>
+            handleSliderChange(event, "professionalExperience")
+          }
           errors={errors}
         />
       ),
@@ -138,6 +141,9 @@ export default function Page() {
         <TechnicalSkillsForm
           technicalSkills={formData.technicalSkills}
           onChange={(event) => handleChange(event, "technicalSkills")}
+          onSliderChange={(event) =>
+            handleSliderChange(event, "technicalSkills")
+          }
           errors={errors}
         />
       ),
@@ -208,9 +214,26 @@ export default function Page() {
     }));
   };
 
+  const handleSliderChange = (
+    event: {
+      name: string;
+      value: number[];
+    },
+    fieldKey: keyof typeof formData,
+  ) => {
+    const value = event.value[0];
+    const name = event.name;
+    if (value) {
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+    }
+    setFormData((prevForm) => ({
+      ...prevForm,
+      [fieldKey]: { ...prevForm[fieldKey], [name]: value },
+    }));
+  };
+
   const handleNextPage = () => {
-    //&& steps[currentStep].validate()
-    if (currentStep < steps.length - 1) {
+    if (currentStep < steps.length - 1 && steps[currentStep].validate()) {
       setCurrentStep((prev) => prev + 1);
     }
   };
@@ -221,6 +244,7 @@ export default function Page() {
     }
   };
 
+  // final submit
   const handleSubmit = () => {
     if (formData.projectExperience.length < 3) {
       toast({
@@ -238,6 +262,7 @@ export default function Page() {
       });
       return;
     }
+    // save data to your database
     console.log(formData);
   };
 
@@ -246,7 +271,11 @@ export default function Page() {
       <div>
         {steps[currentStep].content}
         <div className="mb-16 mt-5 flex w-[350px] items-center gap-x-10 md:mb-0 md:w-[900px]">
-          <SubmitButton onClick={handlePrevPage}>&larr; Prev page</SubmitButton>
+          {currentStep !== 0 && (
+            <SubmitButton onClick={handlePrevPage}>
+              &larr; Prev page
+            </SubmitButton>
+          )}
           {steps.length - 1 === currentStep ? (
             <SubmitButton type="button" onClick={handleSubmit}>
               Submit

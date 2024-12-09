@@ -4,13 +4,16 @@ import LabelInputContainer from "@/components/LabelInputContainer";
 import { Textarea } from "../ui/textarea";
 import { CircleAlert } from "lucide-react";
 import FormError from "./FormError";
+import { Slider } from "../ui/slider";
+import ExperienceSlider from "./ExperienceSlider";
+import { useState } from "react";
 
 type TProps = {
   technicalSkills: {
-    javascriptRate: string;
-    typescriptRate: string;
-    ReactRate: string;
-    NextjsRate: string;
+    javascriptRate: number;
+    typescriptRate: number;
+    ReactRate: number;
+    NextjsRate: number;
     testingToolForApplication: string;
     automatedTestingExperience: string;
     endToEndTesting: string;
@@ -19,12 +22,14 @@ type TProps = {
   onChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
+  onSliderChange: ({ name, value }: { name: string; value: number[] }) => void;
 };
 
 export default function TechnicalSkillsForm({
   technicalSkills,
   errors,
   onChange,
+  onSliderChange,
 }: TProps) {
   const {
     NextjsRate,
@@ -42,13 +47,14 @@ export default function TechnicalSkillsForm({
         <Label htmlFor="javascriptRate">
           Rate your proficiency in Javascript
         </Label>
-        <Input
+        <ExperienceSlider
+          max={10}
+          step={1}
+          defaultValue={[0]}
           value={javascriptRate}
-          onChange={onChange}
-          name="javascriptRate"
-          id="javascriptRate"
-          placeholder="1 to 10"
-          type="text"
+          onValueChange={(value) =>
+            onSliderChange({ name: "javascriptRate", value })
+          }
         />
         {errors?.javascriptRate && (
           <FormError errorMessage={errors.javascriptRate} />
@@ -58,13 +64,14 @@ export default function TechnicalSkillsForm({
         <Label htmlFor="typescriptRate">
           Rate your proficiency in Typescript
         </Label>
-        <Input
+        <ExperienceSlider
+          max={10}
+          step={1}
+          defaultValue={[0]}
           value={typescriptRate}
-          onChange={onChange}
-          name="typescriptRate"
-          id="typescriptRate"
-          placeholder="1 to 10"
-          type="text"
+          onValueChange={(value) =>
+            onSliderChange({ name: "typescriptRate", value })
+          }
         />
         {errors?.typescriptRate && (
           <FormError errorMessage={errors.typescriptRate} />
@@ -72,25 +79,27 @@ export default function TechnicalSkillsForm({
       </LabelInputContainer>
       <LabelInputContainer className="mb-4">
         <Label htmlFor="ReactRate">Rate your proficiency in React</Label>
-        <Input
+        <ExperienceSlider
+          max={10}
+          step={1}
+          defaultValue={[0]}
           value={ReactRate}
-          onChange={onChange}
-          name="ReactRate"
-          id="ReactRate"
-          placeholder="1 to 10"
-          type="text"
+          onValueChange={(value) =>
+            onSliderChange({ name: "ReactRate", value })
+          }
         />
         {errors?.ReactRate && <FormError errorMessage={errors.ReactRate} />}
       </LabelInputContainer>
       <LabelInputContainer className="mb-4">
         <Label htmlFor=" NextjsRate">Rate your proficiency in Next.js</Label>
-        <Input
+        <ExperienceSlider
+          max={10}
+          step={1}
+          defaultValue={[0]}
           value={NextjsRate}
-          onChange={onChange}
-          name="NextjsRate"
-          id="NextjsRate"
-          placeholder="1 to 10"
-          type="text"
+          onValueChange={(value) =>
+            onSliderChange({ name: "NextjsRate", value })
+          }
         />
         {errors?.NextjsRate && <FormError errorMessage={errors.NextjsRate} />}
       </LabelInputContainer>

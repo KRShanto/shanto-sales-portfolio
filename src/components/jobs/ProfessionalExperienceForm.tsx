@@ -2,18 +2,20 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import LabelInputContainer from "@/components/LabelInputContainer";
 import FormError from "./FormError";
+import ExperienceSlider from "./ExperienceSlider";
 
 type TProps = {
   professionalExperience: {
-    softwareTesting: string;
-    ReactTesting: string;
-    ReactNative: string;
+    softwareTesting: number;
+    ReactTesting: number;
+    ReactNative: number;
     testingFrameWorks: string;
     workOnMobileApplication: string;
   };
   onChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
+  onSliderChange: ({ name, value }: { name: string; value: number[] }) => void;
   errors: any;
 };
 
@@ -21,6 +23,7 @@ export default function ProfessionalExperienceForm({
   professionalExperience,
   errors,
   onChange,
+  onSliderChange,
 }: TProps) {
   const {
     ReactNative,
@@ -37,13 +40,15 @@ export default function ProfessionalExperienceForm({
         <Label htmlFor="softwareTesting">
           Years of experience in Software Testing
         </Label>
-        <Input
+        <ExperienceSlider
+          max={5}
+          plusInputValue={softwareTesting < 2 ? "Year" : "Years"}
+          step={1}
+          defaultValue={[0]}
           value={softwareTesting}
-          onChange={onChange}
-          name="softwareTesting"
-          id="softwareTesting"
-          placeholder="1 Year"
-          type="text"
+          onValueChange={(value) =>
+            onSliderChange({ name: "softwareTesting", value })
+          }
         />
         {errors?.softwareTesting && (
           <FormError errorMessage={errors.softwareTesting} />
@@ -53,13 +58,15 @@ export default function ProfessionalExperienceForm({
         <Label htmlFor="ReactTesting">
           Years of experience in React Testing Library
         </Label>
-        <Input
+        <ExperienceSlider
+          max={5}
+          step={1}
+          plusInputValue={ReactTesting < 2 ? "Year" : "Years"}
+          defaultValue={[0]}
           value={ReactTesting}
-          onChange={onChange}
-          name="ReactTesting"
-          id="ReactTesting"
-          placeholder="1 Year"
-          type="text"
+          onValueChange={(value) =>
+            onSliderChange({ name: "ReactTesting", value })
+          }
         />
         {errors?.ReactTesting && (
           <FormError errorMessage={errors.ReactTesting} />
@@ -67,13 +74,15 @@ export default function ProfessionalExperienceForm({
       </LabelInputContainer>
       <LabelInputContainer className="mb-4">
         <Label htmlFor="ReactNative">Years of experience in React Native</Label>
-        <Input
+        <ExperienceSlider
+          plusInputValue={ReactNative < 2 ? "Year" : "Years"}
+          max={5}
+          step={1}
+          defaultValue={[0]}
           value={ReactNative}
-          onChange={onChange}
-          name="ReactNative"
-          id="ReactNative"
-          placeholder="1 Year"
-          type="text"
+          onValueChange={(value) =>
+            onSliderChange({ name: "ReactNative", value })
+          }
         />
         {errors?.ReactNative && <FormError errorMessage={errors.ReactNative} />}
       </LabelInputContainer>
