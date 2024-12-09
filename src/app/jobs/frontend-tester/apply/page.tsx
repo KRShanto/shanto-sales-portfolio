@@ -5,9 +5,19 @@ import React, { useState } from "react";
 import SubmitButton from "@/components/SubmitButton";
 import ProfessionalExperienceForm from "@/components/jobs/ProfessionalExperienceForm";
 import TechnicalSkillsForm from "@/components/jobs/TechnicalSkillsForm";
-import ProjectExperience from "@/components/jobs/ProjectExperience";
+import ProjectSection from "@/components/jobs/ProjectSection";
+import { toast, useToast } from "@/hooks/use-toast";
 
-const defaultFormData = {
+type TProjectExperience = {
+  projectTitle: string;
+  projectDescription: string;
+  liveLink: string;
+  githubLink: string;
+  partOfTestedInProject: string;
+  testToFindBug: string;
+};
+
+export const defaultFormData = {
   personalInfo: {
     firstName: "",
     lastName: "",
@@ -31,14 +41,7 @@ const defaultFormData = {
     automatedTestingExperience: "",
     endToEndTesting: "",
   },
-  projectExperience: {
-    projectTitle: "",
-    projectDescription: "",
-    liveLink: "",
-    githubLink: "",
-    partOfTestedInProject: "",
-    testToFindBug: "",
-  },
+  projectExperience: [] as TProjectExperience[],
 };
 
 export default function Page() {
@@ -47,20 +50,7 @@ export default function Page() {
 
   const [errors, setErrors] = useState({});
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    fieldKey: keyof typeof formData,
-  ) => {
-    const value = event.target.value;
-    const name = event.target.name;
-    if (value) {
-      setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
-    }
-    setFormData((prevForm) => ({
-      ...prevForm,
-      [fieldKey]: { ...prevForm[fieldKey], [name]: value },
-    }));
-  };
+  const { toast } = useToast();
 
   const steps = [
     {
@@ -194,17 +184,33 @@ export default function Page() {
     {
       title: "Project Experience",
       content: (
-        <ProjectExperience
-          projectExperience={formData.projectExperience}
-          onChange={(event) => handleChange(event, "projectExperience")}
+        <ProjectSection
+          projects={formData.projectExperience}
+          setFormData={setFormData}
         />
       ),
-      validate: () => true,
+      validate: () => formData.projectExperience.length >= 3,
     },
   ];
 
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    fieldKey: keyof typeof formData,
+  ) => {
+    const value = event.target.value;
+    const name = event.target.name;
+    if (value) {
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+    }
+    setFormData((prevForm) => ({
+      ...prevForm,
+      [fieldKey]: { ...prevForm[fieldKey], [name]: value },
+    }));
+  };
+
   const handleNextPage = () => {
-    if (currentStep < steps.length - 1 && steps[currentStep].validate()) {
+    //&& steps[currentStep].validate()
+    if (currentStep < steps.length - 1) {
       setCurrentStep((prev) => prev + 1);
     }
   };
@@ -215,21 +221,34 @@ export default function Page() {
     }
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = () => {
+    if (formData.projectExperience.length < 3) {
+      toast({
+        variant: "destructive",
+        title: `Please add at least more ${3 - formData.projectExperience.length} projects`,
+      });
+      return;
+    }
+    if (!steps.every((step) => step.validate())) {
+      toast({
+        variant: "destructive",
+        title: `Please fill in all required fields on the current page`,
+        description:
+          "some fields may be filled incorrectly. Please check and correct them.",
+      });
+      return;
+    }
     console.log(formData);
   };
 
-  console.log({ errors });
-
   return (
     <Section className="flex min-h-[calc(100vh-100px)] flex-col items-center justify-center py-10 md:mt-0">
-      <form onSubmit={handleSubmit}>
+      <div>
         {steps[currentStep].content}
         <div className="mb-16 mt-5 flex w-[350px] items-center gap-x-10 md:mb-0 md:w-[900px]">
           <SubmitButton onClick={handlePrevPage}>&larr; Prev page</SubmitButton>
           {steps.length - 1 === currentStep ? (
-            <SubmitButton type="submit" onClick={handleNextPage}>
+            <SubmitButton type="button" onClick={handleSubmit}>
               Submit
             </SubmitButton>
           ) : (
@@ -238,7 +257,7 @@ export default function Page() {
             </SubmitButton>
           )}
         </div>
-      </form>
+      </div>
     </Section>
   );
 }
