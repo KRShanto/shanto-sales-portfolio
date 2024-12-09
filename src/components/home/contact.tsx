@@ -17,6 +17,8 @@ import { PRICING_MODEL } from "@/lib/constants";
 import { Textarea } from "../ui/textarea";
 import Growth from "@/../public/animations/Growth.json";
 import IconCloud from "../ui/icon-cloud";
+import LabelInputContainer from "../LabelInputContainer";
+import SubmitButton from "../SubmitButton";
 
 const roboto = Roboto({
   weight: "700",
@@ -28,7 +30,7 @@ const tabs = [
     title: "Personal Information",
     value: "personal",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-10">
+      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-6 md:p-10">
         <Personal />
       </div>
     ),
@@ -37,7 +39,7 @@ const tabs = [
     title: "Business Information",
     value: "business",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-10">
+      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-6 md:p-10">
         <Business />
       </div>
     ),
@@ -46,7 +48,7 @@ const tabs = [
     title: "Website",
     value: "website",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-10">
+      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-6 md:p-10">
         <Website />
       </div>
     ),
@@ -55,7 +57,7 @@ const tabs = [
     title: "Conclusions",
     value: "conclusions",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-10">
+      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-600 bg-[#0c0c0c] p-6 md:p-10">
         <Conclusion />
       </div>
     ),
@@ -101,59 +103,15 @@ export default function Contact() {
     <Section id="contact">
       <SectionTitle text="Contact me" />
 
-      <div className="flex w-full flex-col-reverse gap-20 md:flex-row">
-        <div className="h-[33rem] w-full md:w-1/2">
-          <Tabs tabs={tabs} />
+      <div className="flex w-full flex-col gap-20 md:flex-row md:p-0">
+        <div className="h-[36rem] w-full md:h-[33rem] md:w-1/2">
+          <Tabs contentClassName="overflow-auto" tabs={tabs} />
         </div>
         <div className="flex w-full items-center justify-center md:w-1/2">
           <IconCloud iconSlugs={slugs} />
         </div>
       </div>
     </Section>
-  );
-}
-
-const BottomGradient = () => {
-  return (
-    <>
-      <span className="absolute inset-x-0 -bottom-px block h-px w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100" />
-      <span className="absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-0 blur-sm transition duration-500 group-hover/btn:opacity-100" />
-    </>
-  );
-};
-
-const LabelInputContainer = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
-  return (
-    <div className={cn("flex w-full flex-col space-y-2", className)}>
-      {children}
-    </div>
-  );
-};
-
-function SubmitButton({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <button
-      className={cn(
-        "group/btn relative block h-10 w-full rounded-full bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]",
-        className,
-      )}
-      type="submit"
-    >
-      {children}
-      <BottomGradient />
-    </button>
   );
 }
 

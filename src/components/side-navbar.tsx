@@ -38,7 +38,7 @@ export default function SideNavbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // if (is1450) return null;
+  if (is1450) return null;
 
   const containerVariants = {
     hidden: { opacity: 0 },
