@@ -64,7 +64,7 @@ export default function Faq() {
     <Section id="questions">
       <SectionTitle text="Frequently Asked Questions" />
 
-      <Accordion className="mx-auto md:block md:w-[50rem]">
+      <Accordion className="mx-auto md:block md:w-[50rem] md:p-0">
         {questions.map((e, i) => {
           return (
             <Tab

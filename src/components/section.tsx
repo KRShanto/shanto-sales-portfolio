@@ -16,7 +16,7 @@ export default function Section({
     <section
       id={id}
       className={cn(
-        "mx-auto max-[900px]:w-[90vw] md:mt-32 md:w-[80vw] md:max-[1300px]:mt-24",
+        "mx-auto w-[80vw] md:mt-32 md:max-[1300px]:mt-24",
         className,
       )}
       ref={ref}
